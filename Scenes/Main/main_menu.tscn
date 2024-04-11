@@ -1,3 +1,197 @@
-[gd_scene format=3 uid="uid://balgefs75b6qy"]
+[gd_scene load_steps=23 format=3 uid="uid://balgefs75b6qy"]
+
+[ext_resource type="Script" path="res://Scenes/Main/main_menu.gd" id="1_jxedb"]
+[ext_resource type="Texture2D" uid="uid://dc1ekjcljf1l3" path="res://Assets/Sprites/Menu/Main/Cover.png" id="1_qaoeq"]
+[ext_resource type="FontFile" uid="uid://wd1enlomam23" path="res://Assets/Fonts/alagard.ttf" id="2_gfihr"]
+[ext_resource type="Script" path="res://Scenes/Main/button_sound.gd" id="3_l2eoe"]
+[ext_resource type="AudioStream" uid="uid://cqki56rn17fh" path="res://Assets/Sounds/Menu/main_menu.wav" id="3_wtlqw"]
+[ext_resource type="AudioStream" uid="uid://sfctyba5bx8x" path="res://Assets/Sounds/Menu/select.ogg" id="4_2e7d1"]
+[ext_resource type="AudioStream" uid="uid://cpwt832pujsjj" path="res://Assets/Sounds/Menu/tap.ogg" id="5_l62ex"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lty41"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1rwv3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ejvtv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nfqbq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gyc0q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r36h3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gv6a4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ru1qc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kup30"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n1v3w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2jr1r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fb1pe"]
+
+[sub_resource type="Animation" id="Animation_cexnb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeIn:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_tdgck"]
+resource_name = "fade_out"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeIn:color")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6bttr"]
+_data = {
+"RESET": SubResource("Animation_cexnb"),
+"fade_out": SubResource("Animation_tdgck")
+}
 
 [node name="MainMenu" type="CanvasLayer"]
+script = ExtResource("1_jxedb")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+
+[node name="CoverScreen" type="TextureRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+scale = Vector2(0.821898, 0.82346)
+texture = ExtResource("1_qaoeq")
+expand_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_right = 40
+
+[node name="TitleLabel" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_gfihr")
+theme_override_font_sizes/font_size = 50
+text = "The Giver"
+horizontal_alignment = 2
+
+[node name="ButtonContainer" type="VBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(200, 325)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+mouse_filter = 2
+
+[node name="NewGameButton" type="Button" parent="MarginContainer/ButtonContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(0.682353, 0.682353, 0.682353, 1)
+theme_override_colors/font_pressed_color = Color(0.145098, 0.145098, 0.145098, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_gfihr")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_lty41")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1rwv3")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ejvtv")
+theme_override_styles/focus = SubResource("StyleBoxFlat_nfqbq")
+text = "New Game"
+flat = true
+alignment = 2
+script = ExtResource("3_l2eoe")
+focus_sound = ExtResource("4_2e7d1")
+pressed_sound = ExtResource("5_l62ex")
+
+[node name="SettingsButton" type="Button" parent="MarginContainer/ButtonContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(0.682353, 0.682353, 0.682353, 1)
+theme_override_colors/font_pressed_color = Color(0.145098, 0.145098, 0.145098, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_gfihr")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_gyc0q")
+theme_override_styles/hover = SubResource("StyleBoxFlat_r36h3")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_gv6a4")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ru1qc")
+text = "Settings"
+flat = true
+alignment = 2
+script = ExtResource("3_l2eoe")
+focus_sound = ExtResource("4_2e7d1")
+pressed_sound = ExtResource("5_l62ex")
+
+[node name="QuitButton" type="Button" parent="MarginContainer/ButtonContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(0.682353, 0.682353, 0.682353, 1)
+theme_override_colors/font_pressed_color = Color(0.145098, 0.145098, 0.145098, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_gfihr")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_kup30")
+theme_override_styles/hover = SubResource("StyleBoxFlat_n1v3w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_2jr1r")
+theme_override_styles/focus = SubResource("StyleBoxFlat_fb1pe")
+text = "Quit"
+flat = true
+alignment = 2
+script = ExtResource("3_l2eoe")
+focus_sound = ExtResource("4_2e7d1")
+pressed_sound = ExtResource("5_l62ex")
+
+[node name="Particles2D" type="CPUParticles2D" parent="."]
+position = Vector2(-18, 726)
+amount = 100
+lifetime = 30.0
+emission_shape = 3
+emission_rect_extents = Vector2(1, 1)
+direction = Vector2(20, -20)
+spread = 50.0
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+angular_velocity_min = 300.0
+angular_velocity_max = 300.0
+scale_amount_max = 6.0
+
+[node name="FadeIn" type="CanvasModulate" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6bttr")
+}
+autoplay = "fade_out"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_wtlqw")
+volume_db = -8.0
+autoplay = true
