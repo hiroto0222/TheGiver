@@ -1,0 +1,166 @@
+[gd_scene load_steps=8 format=3 uid="uid://4uhgjesgq3e2"]
+
+[ext_resource type="Texture2D" uid="uid://bs2ehkl8xvlv0" path="res://Assets/Sprites/CutScenes/CutScene1/Slides/1.png" id="1_0hhft"]
+[ext_resource type="Script" path="res://Scenes/CutScenes/CutScene1/cut_scene_1.gd" id="1_mae64"]
+[ext_resource type="Texture2D" uid="uid://d345i4c4okx3g" path="res://Assets/Sprites/CutScenes/CutScene1/Slides/2.png" id="2_7q0tk"]
+
+[sub_resource type="Animation" id="Animation_mrnr7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slides/Slide1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Slides/Slide1/BackgroundContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Slides/Slide2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Slides/Slide2/BackgroundContainer:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jo1q0"]
+resource_name = "slide1"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slides/Slide1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Slides/Slide1/BackgroundContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5xu6q"]
+resource_name = "slide2"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slides/Slide2:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Slides/Slide2/BackgroundContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l73yc"]
+_data = {
+"RESET": SubResource("Animation_mrnr7"),
+"slide1": SubResource("Animation_jo1q0"),
+"slide2": SubResource("Animation_5xu6q")
+}
+
+[node name="CutScene1" type="Node2D"]
+script = ExtResource("1_mae64")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 1)
+
+[node name="Slides" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Slide1" type="CanvasLayer" parent="Slides"]
+visible = false
+
+[node name="BackgroundContainer" type="MarginContainer" parent="Slides/Slide1"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="Slides/Slide1/BackgroundContainer"]
+layout_mode = 2
+texture = ExtResource("1_0hhft")
+expand_mode = 2
+
+[node name="Slide2" type="CanvasLayer" parent="Slides"]
+visible = false
+
+[node name="BackgroundContainer" type="MarginContainer" parent="Slides/Slide2"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="Slides/Slide2/BackgroundContainer"]
+layout_mode = 2
+texture = ExtResource("2_7q0tk")
+expand_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_l73yc")
+}
