@@ -12,7 +12,7 @@ func _ready() -> void:
 
 func on_dialog_ended() -> void:
 	Dialogic.timeline_ended.disconnect(on_dialog_ended)
-	print("cut_scene_1 dialogue ended")
+	get_tree().change_scene_to_file("res://Scenes/Levels/Level1/level_1.tscn")
 
 
 # When signal is recieved, transition to value slide

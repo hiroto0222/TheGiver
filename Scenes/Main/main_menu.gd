@@ -7,12 +7,15 @@ extends CanvasLayer
 
 
 func _ready() -> void:
+	new_game_button.grab_focus()
 	new_game_button.pressed.connect(on_new_game_pressed)
 	settings_button.pressed.connect(on_settings_pressed)
 	quit_button.pressed.connect(on_quit_pressed)
 
 
 func on_new_game_pressed() -> void:
+	settings_button.visible = false
+	quit_button.visible = false
 	anim.play("start_game")
 
 

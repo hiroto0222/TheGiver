@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=3 uid="uid://60hf1qtqp41i"]
+
+[ext_resource type="PackedScene" uid="uid://dm386x7j1ghcw" path="res://Scenes/UI/Fight/action_button.tscn" id="1_78jl4"]
+[ext_resource type="Script" path="res://Scenes/UI/Fight/action_buttons.gd" id="1_y1yr8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t6hdx"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="ActionButtons" type="CanvasLayer"]
+script = ExtResource("1_y1yr8")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 100)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_t6hdx")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_override_constants/margin_left = 140
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 140
+theme_override_constants/margin_bottom = 0
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 120)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/h_separation = 66
+columns = 4
+
+[node name="FightButton" parent="MarginContainer/PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_78jl4")]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_right = NodePath("../ActButton")
+text = "Fight"
+
+[node name="ActButton" parent="MarginContainer/PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_78jl4")]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_left = NodePath("../FightButton")
+focus_neighbor_right = NodePath("../ItemButton")
+text = "Act"
+
+[node name="ItemButton" parent="MarginContainer/PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_78jl4")]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_left = NodePath("../ActButton")
+focus_neighbor_right = NodePath("../DefendButton")
+text = "Item"
+
+[node name="DefendButton" parent="MarginContainer/PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_78jl4")]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_left = NodePath("../ItemButton")
+text = "Defend"

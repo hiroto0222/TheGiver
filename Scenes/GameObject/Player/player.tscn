@@ -1,0 +1,93 @@
+[gd_scene load_steps=12 format=3 uid="uid://cgj1c856i77vv"]
+
+[ext_resource type="Texture2D" uid="uid://cpbwcfvdpt8ik" path="res://Assets/Sprites/Characters/Mosquito/Idle/frame1s.png" id="2_pldr2"]
+[ext_resource type="Texture2D" uid="uid://b8r313lprk5ti" path="res://Assets/Sprites/Characters/Mosquito/Idle/frame2s.png" id="2_wte4y"]
+[ext_resource type="Texture2D" uid="uid://dkrlcqmibaa1l" path="res://Assets/Sprites/Characters/Mosquito/Idle/frame3s.png" id="3_6ddtc"]
+[ext_resource type="Texture2D" uid="uid://cdh83n86uhgxu" path="res://Assets/Sprites/Characters/Mosquito/Idle/frame4s.png" id="4_x6bm5"]
+[ext_resource type="Texture2D" uid="uid://eaki16k45qur" path="res://Assets/Sprites/Characters/Mosquito/Idle/frame5s.png" id="5_bki84"]
+[ext_resource type="Texture2D" uid="uid://cfg3mxv0prpx4" path="res://Assets/Sprites/Characters/Mosquito/Idle/frame6s.png" id="6_s347h"]
+[ext_resource type="Texture2D" uid="uid://ck25y70rm5ddg" path="res://Assets/Sprites/Characters/Mosquito/Idle/frame7s.png" id="7_o0ebk"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_so0wt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_pldr2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_wte4y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_6ddtc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_x6bm5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_bki84")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_s347h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_o0ebk")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[sub_resource type="Animation" id="Animation_q15wo"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(2.08165e-12, -5), Vector2(2.08165e-12, 2.08165e-12)]
+}
+
+[sub_resource type="Animation" id="Animation_hjgfp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f3ia7"]
+_data = {
+"RESET": SubResource("Animation_hjgfp"),
+"idle": SubResource("Animation_q15wo")
+}
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(229, 201)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
+sprite_frames = SubResource("SpriteFrames_so0wt")
+animation = &"idle"
+autoplay = "idle"
+frame = 1
+frame_progress = 0.900551
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_f3ia7")
+}
+autoplay = "idle"
