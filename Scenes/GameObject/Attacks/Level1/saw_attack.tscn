@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://bqi6c6a6jf3l2"]
+
+[ext_resource type="Script" path="res://Scenes/GameObject/Attacks/Level1/saw_attack.gd" id="1_atwxl"]
+[ext_resource type="Texture2D" uid="uid://bs2k0jn1tsp2r" path="res://Assets/Sprites/Characters/Human/Worker/Attacks/spheresaw.png" id="1_v6lk6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bl4ux"]
+radius = 50.0
+
+[sub_resource type="Animation" id="Animation_ssxp3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_2hjps"]
+resource_name = "spin"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f7y73"]
+_data = {
+"RESET": SubResource("Animation_ssxp3"),
+"spin": SubResource("Animation_2hjps")
+}
+
+[node name="SawAttack" type="Node2D"]
+script = ExtResource("1_atwxl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_v6lk6")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(1, 1)
+shape = SubResource("CircleShape2D_bl4ux")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_f7y73")
+}
+autoplay = "spin"

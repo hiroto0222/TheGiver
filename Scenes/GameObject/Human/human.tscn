@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://bamer6ekrck24"]
+
+[ext_resource type="Texture2D" uid="uid://cxswr3s47y806" path="res://Assets/Sprites/Characters/Human/Worker/0.png" id="1_2qhhg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ml1aj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2qhhg")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_av7yt"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1331, -24), Vector2(1331, -60), Vector2(1331, -24)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e11ce"]
+_data = {
+"idle": SubResource("Animation_av7yt")
+}
+
+[node name="Human" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1331, -24)
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_ml1aj")
+animation = &"idle"
+autoplay = "idle"
+offset = Vector2(-1068, 980)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_e11ce")
+}
+autoplay = "idle"

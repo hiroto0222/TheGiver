@@ -1,0 +1,205 @@
+[gd_scene load_steps=16 format=3 uid="uid://cf3c6uac67ave"]
+
+[ext_resource type="Texture2D" uid="uid://b16fk7bd4hftb" path="res://Assets/Sprites/Backgrounds/level1.png" id="1_5o1yw"]
+[ext_resource type="PackedScene" uid="uid://60hf1qtqp41i" path="res://Scenes/UI/Fight/action_buttons.tscn" id="1_71sfm"]
+[ext_resource type="AudioStream" uid="uid://drvyjsgkkebw" path="res://Assets/Sounds/Themes/stage_1.wav" id="1_nnndp"]
+[ext_resource type="Script" path="res://Scenes/Levels/Level1/level_1.gd" id="1_yb8hj"]
+[ext_resource type="PackedScene" uid="uid://cgj1c856i77vv" path="res://Scenes/GameObject/Player/player.tscn" id="2_exma6"]
+[ext_resource type="PackedScene" uid="uid://bamer6ekrck24" path="res://Scenes/GameObject/Human/human.tscn" id="3_greyo"]
+[ext_resource type="PackedScene" uid="uid://b0wu4e6emajaq" path="res://Scenes/GameObject/Attacks/Level1/attack_1.tscn" id="3_o0m8b"]
+[ext_resource type="PackedScene" uid="uid://cfqw6qn8syvwk" path="res://Scenes/GameObject/Battle/battle_box.tscn" id="7_uy36x"]
+[ext_resource type="PackedScene" uid="uid://b7crd40aenn2t" path="res://Scenes/GameObject/Player/battle_player.tscn" id="8_2pjwx"]
+
+[sub_resource type="Animation" id="Animation_pve0s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IntroCover:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Background:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.172549, 0.188235, 0.184314, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2we2q"]
+resource_name = "intro_sequence"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IntroCover:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 7.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Background:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(7.5, 8),
+"transitions": PackedFloat32Array(0.353553, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(7.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"handle_intro_finished"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_bf7it"]
+resource_name = "no_intro"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IntroCover:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"handle_intro_finished"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Background:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1pll0"]
+resource_name = "enter_battle"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 0.1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.164706, 0.164706, 0.164706, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_a777u"]
+resource_name = "exit_battle"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 0.1),
+"update": 0,
+"values": [Color(0.164706, 0.164706, 0.164706, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lkf55"]
+_data = {
+"RESET": SubResource("Animation_pve0s"),
+"enter_battle": SubResource("Animation_1pll0"),
+"exit_battle": SubResource("Animation_a777u"),
+"intro_sequence": SubResource("Animation_2we2q"),
+"no_intro": SubResource("Animation_bf7it")
+}
+
+[node name="Level1" type="Node2D"]
+script = ExtResource("1_yb8hj")
+action_buttons_scene = ExtResource("1_71sfm")
+attack_sequence = Array[PackedScene]([ExtResource("3_o0m8b")])
+battle_box_scene = ExtResource("7_uy36x")
+battle_player_scene = ExtResource("8_2pjwx")
+
+[node name="Background" type="TextureRect" parent="."]
+modulate = Color(0.172549, 0.188235, 0.184314, 1)
+custom_minimum_size = Vector2(1280, 720)
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+texture = ExtResource("1_5o1yw")
+expand_mode = 2
+
+[node name="Player" parent="." instance=ExtResource("2_exma6")]
+position = Vector2(200, 300)
+
+[node name="Human" parent="." instance=ExtResource("3_greyo")]
+position = Vector2(41, -81)
+
+[node name="BattleArea" type="Node2D" parent="." groups=["battle_area_layer"]]
+y_sort_enabled = true
+
+[node name="Entities" type="Node2D" parent="." groups=["entities_layer"]]
+
+[node name="IntroCover" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(1280, 720)
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 1)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_nnndp")
+autoplay = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lkf55")
+}
+autoplay = "intro_sequence"

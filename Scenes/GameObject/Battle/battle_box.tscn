@@ -1,0 +1,106 @@
+[gd_scene load_steps=7 format=3 uid="uid://cfqw6qn8syvwk"]
+
+[ext_resource type="Script" path="res://Scenes/GameObject/Battle/battle_box.gd" id="1_kqgfp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q1oun"]
+size = Vector2(320, 20)
+
+[sub_resource type="Animation" id="Animation_f84we"]
+resource_name = "enter"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.15, 1),
+"update": 0,
+"values": [Vector2(2.08165e-12, 2.08165e-12), Vector2(8, 8)]
+}
+
+[sub_resource type="Animation" id="Animation_tcxlg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, 8)]
+}
+
+[sub_resource type="Animation" id="Animation_ifmc0"]
+resource_name = "leave"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.15, 1),
+"update": 0,
+"values": [Vector2(8, 8), Vector2(2.08165e-12, 2.08165e-12)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y60kg"]
+_data = {
+"RESET": SubResource("Animation_tcxlg"),
+"enter": SubResource("Animation_f84we"),
+"leave": SubResource("Animation_ifmc0")
+}
+
+[node name="BattleBox" type="Node2D"]
+script = ExtResource("1_kqgfp")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_left = 620.0
+offset_top = 260.0
+offset_right = 660.0
+offset_bottom = 300.0
+scale = Vector2(8, 8)
+pivot_offset = Vector2(20, 20)
+color = Color(0, 0, 0, 1)
+
+[node name="Wall" type="StaticBody2D" parent="."]
+position = Vector2(-20, -20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+position = Vector2(660, 470)
+shape = SubResource("RectangleShape2D_q1oun")
+
+[node name="Wall2" type="StaticBody2D" parent="."]
+position = Vector2(-20, -20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
+position = Vector2(660, 130)
+shape = SubResource("RectangleShape2D_q1oun")
+
+[node name="Wall3" type="StaticBody2D" parent="."]
+position = Vector2(-20, -20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall3"]
+position = Vector2(490, 300)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_q1oun")
+
+[node name="Wall4" type="StaticBody2D" parent="."]
+position = Vector2(-20, -20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall4"]
+position = Vector2(830, 300)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_q1oun")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_y60kg")
+}
+autoplay = "enter"

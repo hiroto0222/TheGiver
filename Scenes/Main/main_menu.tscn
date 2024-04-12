@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://balgefs75b6qy"]
+[gd_scene load_steps=12 format=3 uid="uid://balgefs75b6qy"]
 
 [ext_resource type="Script" path="res://Scenes/Main/main_menu.gd" id="1_jxedb"]
 [ext_resource type="Texture2D" uid="uid://dc1ekjcljf1l3" path="res://Assets/Sprites/Menu/Main/Cover.png" id="1_qaoeq"]
@@ -7,30 +7,6 @@
 [ext_resource type="AudioStream" uid="uid://cqki56rn17fh" path="res://Assets/Sounds/Menu/main_menu.wav" id="3_wtlqw"]
 [ext_resource type="AudioStream" uid="uid://sfctyba5bx8x" path="res://Assets/Sounds/Menu/select.ogg" id="4_2e7d1"]
 [ext_resource type="AudioStream" uid="uid://cpwt832pujsjj" path="res://Assets/Sounds/Menu/tap.ogg" id="5_l62ex"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lty41"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1rwv3"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ejvtv"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nfqbq"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gyc0q"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r36h3"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gv6a4"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ru1qc"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kup30"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n1v3w"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2jr1r"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fb1pe"]
 
 [sub_resource type="Animation" id="Animation_cexnb"]
 length = 0.001
@@ -239,15 +215,13 @@ mouse_filter = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
+focus_neighbor_bottom = NodePath("../SettingsButton")
+mouse_filter = 2
 theme_override_colors/font_color = Color(0.682353, 0.682353, 0.682353, 1)
 theme_override_colors/font_pressed_color = Color(0.145098, 0.145098, 0.145098, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_gfihr")
 theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_lty41")
-theme_override_styles/hover = SubResource("StyleBoxFlat_1rwv3")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ejvtv")
-theme_override_styles/focus = SubResource("StyleBoxFlat_nfqbq")
 text = "New Game"
 flat = true
 alignment = 2
@@ -259,15 +233,14 @@ pressed_sound = ExtResource("5_l62ex")
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
+focus_neighbor_top = NodePath("../NewGameButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
+mouse_filter = 2
 theme_override_colors/font_color = Color(0.682353, 0.682353, 0.682353, 1)
 theme_override_colors/font_pressed_color = Color(0.145098, 0.145098, 0.145098, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_gfihr")
 theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_gyc0q")
-theme_override_styles/hover = SubResource("StyleBoxFlat_r36h3")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_gv6a4")
-theme_override_styles/focus = SubResource("StyleBoxFlat_ru1qc")
 text = "Settings"
 flat = true
 alignment = 2
@@ -279,15 +252,13 @@ pressed_sound = ExtResource("5_l62ex")
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
+focus_neighbor_top = NodePath("../SettingsButton")
+mouse_filter = 2
 theme_override_colors/font_color = Color(0.682353, 0.682353, 0.682353, 1)
 theme_override_colors/font_pressed_color = Color(0.145098, 0.145098, 0.145098, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_gfihr")
 theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_kup30")
-theme_override_styles/hover = SubResource("StyleBoxFlat_n1v3w")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_2jr1r")
-theme_override_styles/focus = SubResource("StyleBoxFlat_fb1pe")
 text = "Quit"
 flat = true
 alignment = 2
