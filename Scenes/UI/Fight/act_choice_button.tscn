@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://cyomjatw4s8uh"]
+
+[ext_resource type="FontFile" uid="uid://wd1enlomam23" path="res://Assets/Fonts/alagard.ttf" id="1_qs7c8"]
+[ext_resource type="Script" path="res://Scenes/UI/Fight/act_choice_button.gd" id="2_6ps0h"]
+[ext_resource type="AudioStream" uid="uid://sfctyba5bx8x" path="res://Assets/Sounds/Menu/select.ogg" id="3_j53ut"]
+[ext_resource type="AudioStream" uid="uid://cpwt832pujsjj" path="res://Assets/Sounds/Menu/tap.ogg" id="4_ujq4h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ulkk5"]
+content_margin_left = 40.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mxjdy"]
+content_margin_left = 40.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_npjxa"]
+content_margin_left = 40.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[node name="ActChoiceButton" type="Button"]
+custom_minimum_size = Vector2(475, 65)
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_qs7c8")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_ulkk5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mxjdy")
+theme_override_styles/focus = SubResource("StyleBoxFlat_npjxa")
+text = "Act Choice"
+alignment = 0
+script = ExtResource("2_6ps0h")
+focus_sound = ExtResource("3_j53ut")
+pressed_sound = ExtResource("4_ujq4h")

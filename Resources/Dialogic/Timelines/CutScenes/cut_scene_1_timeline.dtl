@@ -1,4 +1,4 @@
-[style name="textbox_style"]
+[style name="cut_scene_style"]
 [music path="res://Assets/Sounds/Themes/cut_scene_1.wav" fade="2.0" volume="-5.0" bus=""]
 *Nurses whispering...
 [wait time="2.0" hide_text="false"]
@@ -19,3 +19,4 @@ Nurse B\: I've never met anyone with O- blood type...
 Nurse A\: Me neither, it's just so unfortunate...
 [music fade="3.0" volume="0.0"]
 [wait time="3.0"]
+[style]

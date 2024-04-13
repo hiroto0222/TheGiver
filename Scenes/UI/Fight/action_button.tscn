@@ -2,31 +2,18 @@
 
 [ext_resource type="FontFile" uid="uid://wd1enlomam23" path="res://Assets/Fonts/alagard.ttf" id="1_4nu8d"]
 [ext_resource type="Script" path="res://Scenes/UI/Fight/action_button.gd" id="2_l3exl"]
+[ext_resource type="StyleBox" uid="uid://c3iqp56nio45w" path="res://Scenes/UI/Fight/button_style_normal.tres" id="2_uwlg3"]
+[ext_resource type="StyleBox" uid="uid://daohsxcfe3fo" path="res://Scenes/UI/Fight/button_style_focus.tres" id="3_28fjq"]
 [ext_resource type="AudioStream" uid="uid://sfctyba5bx8x" path="res://Assets/Sounds/Menu/select.ogg" id="3_wue5r"]
 [ext_resource type="AudioStream" uid="uid://cpwt832pujsjj" path="res://Assets/Sounds/Menu/tap.ogg" id="4_mli54"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3owx8"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.603922, 0.603922, 0.603922, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yrf43"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.8, 0, 0, 1)
-
 [node name="ActionButton" type="Button"]
 custom_minimum_size = Vector2(200, 80)
+mouse_filter = 2
 theme_override_fonts/font = ExtResource("1_4nu8d")
 theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_3owx8")
-theme_override_styles/focus = SubResource("StyleBoxFlat_yrf43")
+theme_override_styles/normal = ExtResource("2_uwlg3")
+theme_override_styles/focus = ExtResource("3_28fjq")
 text = "Attack"
 script = ExtResource("2_l3exl")
 focus_sound = ExtResource("3_wue5r")
