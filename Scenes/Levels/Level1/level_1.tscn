@@ -1,16 +1,17 @@
-[gd_scene load_steps=18 format=3 uid="uid://cf3c6uac67ave"]
+[gd_scene load_steps=19 format=3 uid="uid://cf3c6uac67ave"]
 
 [ext_resource type="Texture2D" uid="uid://b16fk7bd4hftb" path="res://Assets/Sprites/Backgrounds/level1.png" id="1_5o1yw"]
-[ext_resource type="PackedScene" uid="uid://60hf1qtqp41i" path="res://Scenes/UI/Fight/action_buttons.tscn" id="1_71sfm"]
 [ext_resource type="AudioStream" uid="uid://drvyjsgkkebw" path="res://Assets/Sounds/Themes/stage_1.wav" id="1_nnndp"]
-[ext_resource type="Script" path="res://Scenes/Levels/Level1/level_1.gd" id="1_yb8hj"]
+[ext_resource type="Script" path="res://Scenes/Levels/Level1/level_1.gd" id="1_oyf7d"]
 [ext_resource type="PackedScene" uid="uid://cgj1c856i77vv" path="res://Scenes/GameObject/Player/player.tscn" id="2_exma6"]
-[ext_resource type="PackedScene" uid="uid://bqxe6miljlrwe" path="res://Scenes/UI/Fight/act_choice_buttons.tscn" id="3_cmmdu"]
+[ext_resource type="PackedScene" uid="uid://b0wu4e6emajaq" path="res://Scenes/GameObject/Attacks/Level1/attack_1.tscn" id="2_tai2w"]
 [ext_resource type="PackedScene" uid="uid://bamer6ekrck24" path="res://Scenes/GameObject/Human/human.tscn" id="3_greyo"]
-[ext_resource type="PackedScene" uid="uid://b0wu4e6emajaq" path="res://Scenes/GameObject/Attacks/Level1/attack_1.tscn" id="3_o0m8b"]
-[ext_resource type="PackedScene" uid="uid://cfqw6qn8syvwk" path="res://Scenes/GameObject/Battle/battle_box.tscn" id="7_uy36x"]
-[ext_resource type="Script" path="res://Scenes/Levels/Level1/level_manager.gd" id="7_w42d5"]
-[ext_resource type="PackedScene" uid="uid://b7crd40aenn2t" path="res://Scenes/GameObject/Player/battle_player.tscn" id="8_2pjwx"]
+[ext_resource type="Resource" uid="uid://bw628kd1tt4ky" path="res://Resources/ActChoices/Level1/Acts/act_check_1.tres" id="3_o75j2"]
+[ext_resource type="Resource" uid="uid://cmgjl7jwrqiwj" path="res://Resources/ActChoices/Level1/Acts/act_throw_dust_1.tres" id="4_hot5u"]
+[ext_resource type="PackedScene" uid="uid://60hf1qtqp41i" path="res://Scenes/UI/Fight/action_buttons.tscn" id="5_0wxtb"]
+[ext_resource type="PackedScene" uid="uid://bqxe6miljlrwe" path="res://Scenes/UI/Fight/act_choice_buttons.tscn" id="6_kn736"]
+[ext_resource type="PackedScene" uid="uid://cfqw6qn8syvwk" path="res://Scenes/GameObject/Battle/battle_box.tscn" id="7_mc7l1"]
+[ext_resource type="PackedScene" uid="uid://b7crd40aenn2t" path="res://Scenes/GameObject/Player/battle_player.tscn" id="8_ox6ks"]
 
 [sub_resource type="Animation" id="Animation_pve0s"]
 length = 0.001
@@ -164,15 +165,13 @@ _data = {
 }
 
 [node name="Level1" type="Node2D"]
-script = ExtResource("1_yb8hj")
-action_buttons_scene = ExtResource("1_71sfm")
-act_choice_buttons_scene = ExtResource("3_cmmdu")
-attack_sequence = Array[PackedScene]([ExtResource("3_o0m8b")])
-battle_box_scene = ExtResource("7_uy36x")
-battle_player_scene = ExtResource("8_2pjwx")
-
-[node name="LevelManager" type="Node" parent="."]
-script = ExtResource("7_w42d5")
+script = ExtResource("1_oyf7d")
+attack_sequence = Array[PackedScene]([ExtResource("2_tai2w")])
+act_choices = Array[Resource("res://Resources/ActChoices/act.gd")]([ExtResource("3_o75j2"), ExtResource("4_hot5u")])
+action_buttons_scene = ExtResource("5_0wxtb")
+act_choice_buttons_scene = ExtResource("6_kn736")
+battle_box_scene = ExtResource("7_mc7l1")
+battle_player_scene = ExtResource("8_ox6ks")
 
 [node name="Background" type="TextureRect" parent="."]
 modulate = Color(0.172549, 0.188235, 0.184314, 1)

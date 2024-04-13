@@ -1,6 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bamer6ekrck24"]
+[gd_scene load_steps=12 format=3 uid="uid://bamer6ekrck24"]
 
 [ext_resource type="Texture2D" uid="uid://cxswr3s47y806" path="res://Assets/Sprites/Characters/Human/Worker/0.png" id="1_2qhhg"]
+[ext_resource type="Script" path="res://Scenes/GameObject/Human/human.gd" id="1_pd7y1"]
+[ext_resource type="Texture2D" uid="uid://b53s6uxi5ucbv" path="res://Assets/Sprites/Characters/Human/Worker/1.png" id="2_amqh8"]
+[ext_resource type="Texture2D" uid="uid://cwgu3sk6fbcr" path="res://Assets/Sprites/Characters/Human/Worker/2.png" id="3_7ij2q"]
+[ext_resource type="Texture2D" uid="uid://cwkqoq3ylimrm" path="res://Assets/Sprites/Characters/Human/Worker/3.png" id="4_07q7x"]
+[ext_resource type="Texture2D" uid="uid://735to7dfn0ol" path="res://Assets/Sprites/Characters/Human/Worker/4.png" id="5_hqp4n"]
+[ext_resource type="Texture2D" uid="uid://qgvrbtkpvafm" path="res://Assets/Sprites/Characters/Human/Worker/5.png" id="6_r42hf"]
+[ext_resource type="Texture2D" uid="uid://cjcctyey1gnxg" path="res://Assets/Sprites/Characters/Human/Worker/6.png" id="7_4vrhp"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ml1aj"]
 animations = [{
@@ -11,6 +18,32 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2qhhg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_amqh8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7ij2q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_07q7x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_hqp4n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_r42hf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_4vrhp")
+}],
+"loop": false,
+"name": &"open_mask",
+"speed": 10.0
 }]
 
 [sub_resource type="Animation" id="Animation_av7yt"]
@@ -35,12 +68,13 @@ _data = {
 }
 
 [node name="Human" type="CharacterBody2D"]
+script = ExtResource("1_pd7y1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1331, -24)
 scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_ml1aj")
-animation = &"idle"
+animation = &"open_mask"
 autoplay = "idle"
 offset = Vector2(-1068, 980)
 

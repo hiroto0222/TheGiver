@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="DialogicStyle" load_steps=11 format=3 uid="uid://du467o2gd1nvq"]
+
+[ext_resource type="Script" path="res://addons/dialogic/Resources/dialogic_style.gd" id="1_d5717"]
+[ext_resource type="PackedScene" uid="uid://c1k5m0w3r40xf" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_FullBackground/full_background_layer.tscn" id="1_t8db7"]
+[ext_resource type="Script" path="res://addons/dialogic/Resources/dialogic_style_layer.gd" id="2_keh3l"]
+[ext_resource type="PackedScene" uid="uid://cy1y14inwkplb" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Portraits/vn_portrait_layer.tscn" id="3_ysjhv"]
+[ext_resource type="PackedScene" uid="uid://bquja8jyk8kbr" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Textbox/vn_textbox_layer.tscn" id="4_2oqg4"]
+[ext_resource type="PackedScene" uid="uid://cn674foxwedqu" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_Input/full_advance_input_layer.tscn" id="5_1lfb3"]
+
+[sub_resource type="Resource" id="Resource_yv7gm"]
+script = ExtResource("2_keh3l")
+scene = ExtResource("1_t8db7")
+overrides = {}
+
+[sub_resource type="Resource" id="Resource_oug6q"]
+script = ExtResource("2_keh3l")
+scene = ExtResource("3_ysjhv")
+overrides = {}
+
+[sub_resource type="Resource" id="Resource_ilqhg"]
+script = ExtResource("2_keh3l")
+scene = ExtResource("4_2oqg4")
+overrides = {
+"box_animation_in": "0",
+"box_animation_out": "0",
+"box_color_use_global": "false",
+"box_margin_bottom": "10.0",
+"box_size": "Vector2(600, 140)",
+"name_label_box_offset": "Vector2(0, -10)",
+"name_label_custom_font_size": "25.0",
+"name_label_font": "\"res://Assets/Fonts/alagard.ttf\"",
+"name_label_use_global_font": "false",
+"name_label_use_global_font_size": "false",
+"next_indicator_animation": "1",
+"next_indicator_size": "Vector2(10, 10)",
+"normal_font": "\"res://Assets/Fonts/alagard.ttf\"",
+"text_size": "30.0",
+"text_use_global_font": "false",
+"text_use_global_size": "false",
+"typing_sounds_every_nths_character": "2.0"
+}
+
+[sub_resource type="Resource" id="Resource_vyy68"]
+script = ExtResource("2_keh3l")
+scene = ExtResource("5_1lfb3")
+overrides = {
+"disabled": "true"
+}
+
+[resource]
+script = ExtResource("1_d5717")
+name = "battle_scene_style"
+base_overrides = {}
+layers = Array[ExtResource("2_keh3l")]([SubResource("Resource_yv7gm"), SubResource("Resource_oug6q"), SubResource("Resource_ilqhg"), SubResource("Resource_vyy68")])
+metadata/_latest_layer = 2
