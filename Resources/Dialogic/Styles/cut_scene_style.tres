@@ -72,7 +72,7 @@ overrides = {
 
 [resource]
 script = ExtResource("10_j0g45")
-name = "textbox_style"
+name = "cut_scene_style"
 base_overrides = {}
 layers = Array[ExtResource("2_keh3l")]([SubResource("Resource_2lofv"), SubResource("Resource_re3rt"), SubResource("Resource_s71xg"), SubResource("Resource_f4s3n"), SubResource("Resource_fgd23"), SubResource("Resource_uus70"), SubResource("Resource_waajs"), SubResource("Resource_eiuge")])
 metadata/_latest_layer = 2
