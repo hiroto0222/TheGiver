@@ -6,7 +6,7 @@ signal cancelled
 signal act_sequence_ended
 
 # Game Objects
-@export var act_choices: Array[Act]
+@export var act_choices: Array[Act]  # head of linked list for each choices
 @export var act_choice_buttons_scene: PackedScene
 
 # Managers

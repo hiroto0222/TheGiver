@@ -11,6 +11,9 @@ signal start_act_sequence
 @export var action_manager: ActionManager
 @export var act_manager: ActManager
 
+var attack_cnt := 0
+var act_cnt := 0
+
 
 func on_fight_selected() -> void:
 	pass
