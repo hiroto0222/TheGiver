@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ci3fspmani5wb"]
+
+[ext_resource type="Script" path="res://Scenes/autoload/player_state.gd" id="1_nf515"]
+
+[node name="PlayerState" type="Node"]
+script = ExtResource("1_nf515")

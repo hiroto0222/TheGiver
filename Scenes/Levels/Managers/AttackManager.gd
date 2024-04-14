@@ -16,7 +16,7 @@ signal attack_sequence_ended
 # Instances
 var battle_player_instance: CharacterBody2D
 var battle_box_instance: Node2D
-var attack_instance: Attack
+var attack_instance: Node
 
 
 func on_start_attack_sequence() -> void:

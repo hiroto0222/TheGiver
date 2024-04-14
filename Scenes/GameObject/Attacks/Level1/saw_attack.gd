@@ -1,11 +1,16 @@
-extends Node2D
+extends CharacterBody2D
 
-
-var speed := 300
+var max_speed := 500
+var min_speed := 300
 var target_position := Vector2.ZERO
 var spawn_margin := 200
+var speed := max_speed
+var attack_damage: int
 
 func _ready() -> void:
+	# Randomly choose speed
+	speed = randi_range(min_speed, max_speed)
+
 	# Randomly choose a starting position outside the screen
 	var screen_size := get_viewport_rect().size
 	var side := randi_range(0, 3)  # 0: top, 1: right, 2: bottom, 3: left

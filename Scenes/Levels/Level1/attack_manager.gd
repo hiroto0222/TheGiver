@@ -1,5 +1,7 @@
 extends AttackManager
 
+@export var dialog_background: ColorRect # TODO: move logic else where
+
 
 func _ready() -> void:
 	level_manager.start_attack_sequence.connect(on_start_attack_sequence)
@@ -18,7 +20,7 @@ func on_start_attack_sequence() -> void:
 	battle_box_instance = battle_box_scene.instantiate() as Node2D
 
 	# add attack instance
-	attack_instance = attack_sequence[0].instantiate() as Attack
+	attack_instance = attack_sequence[0].instantiate()
 	attack_instance.timer.timeout.connect(on_attack_timer_timeout)
 
 	# add children
@@ -26,6 +28,7 @@ func on_start_attack_sequence() -> void:
 	entities_layer.add_child(attack_instance)
 	add_child(battle_player_instance)
 
+	dialog_background.hide()
 	animation_player.play("enter_battle")
 
 
@@ -48,3 +51,4 @@ func on_clean_up() -> void:
 	# destroy battle player
 	if battle_player_instance != null:
 		battle_player_instance.queue_free()
+	dialog_background.show()

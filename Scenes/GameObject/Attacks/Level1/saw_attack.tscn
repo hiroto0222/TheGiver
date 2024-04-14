@@ -3,9 +3,6 @@
 [ext_resource type="Script" path="res://Scenes/GameObject/Attacks/Level1/saw_attack.gd" id="1_atwxl"]
 [ext_resource type="Texture2D" uid="uid://bs2k0jn1tsp2r" path="res://Assets/Sprites/Characters/Human/Worker/Attacks/spheresaw.png" id="1_v6lk6"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_bl4ux"]
-radius = 50.0
-
 [sub_resource type="Animation" id="Animation_ssxp3"]
 length = 0.001
 tracks/0/type = "value"
@@ -44,21 +41,24 @@ _data = {
 "spin": SubResource("Animation_2hjps")
 }
 
-[node name="SawAttack" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_bl4ux"]
+radius = 50.0
+
+[node name="SawAttack" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 0
 script = ExtResource("1_atwxl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("1_v6lk6")
 
-[node name="Hitbox" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(1, 1)
-shape = SubResource("CircleShape2D_bl4ux")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_f7y73")
 }
 autoplay = "spin"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 1)
+shape = SubResource("CircleShape2D_bl4ux")
