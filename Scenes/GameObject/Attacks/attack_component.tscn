@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bjovyj225837k"]
-
-[ext_resource type="Script" path="res://Scenes/GameObject/Attacks/attack_component.gd" id="1_l14oc"]
-
-[node name="AttackComponent" type="Node"]
-script = ExtResource("1_l14oc")

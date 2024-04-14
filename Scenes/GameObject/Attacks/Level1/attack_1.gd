@@ -1,16 +1,14 @@
-extends Node
-class_name Attack
+extends Attack
 
 const MAX_ATTACK_DURATION = 12
 const MIN_SPAWN_TIME := 0.4
 const MAX_SPAWN_TIME := 1.2
 
 @export var attack_object_scene: PackedScene
-@export var attack_duration: int = 5
 
-var timer := Timer.new()
 var spawn_timer := Timer.new()
 var attack_cnt := 0
+
 
 func _ready() -> void:
 	# total timer for current attack sequence
@@ -28,4 +26,5 @@ func _ready() -> void:
 
 func on_spawn_timer_timeout() -> void:
 	var attack_object_instance := attack_object_scene.instantiate()
+	attack_object_instance.attack_damage = attack_damage
 	add_child(attack_object_instance)

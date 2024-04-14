@@ -14,10 +14,11 @@ func update_max_health(amount: int) -> void:
 
 
 func increase_health(amount: int) -> void:
-	player_health = maxi(player_health + amount, max_health)
+	player_health = mini(player_health + amount, max_health)
 	health_changed.emit(player_health)
 
 
 func decrease_health(amount: int) -> void:
-	player_health = mini(player_health - amount, 0)
+	player_health = maxi(player_health - amount, 0)
+	print("player health: ", player_health)
 	health_changed.emit(player_health)

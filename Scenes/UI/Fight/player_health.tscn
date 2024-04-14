@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://c37jya04vesjw"]
+
+[ext_resource type="Script" path="res://Scenes/UI/Fight/player_health.gd" id="1_hq66o"]
+[ext_resource type="FontFile" uid="uid://wd1enlomam23" path="res://Assets/Fonts/alagard.ttf" id="1_wk4sa"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_i0k5k"]
+font = ExtResource("1_wk4sa")
+font_size = 35
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_55rfq"]
+bg_color = Color(0.8, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5alks"]
+bg_color = Color(0, 0.698039, 0.231373, 1)
+
+[node name="PlayerHealth" type="Node2D"]
+script = ExtResource("1_hq66o")
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(50, 50)
+offset_right = 40.0
+offset_bottom = 23.0
+text = "HP"
+label_settings = SubResource("LabelSettings_i0k5k")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(100, 2.08165e-12)
+offset_left = 60.0
+offset_top = 8.0
+offset_right = 160.0
+offset_bottom = 38.0
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_55rfq")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5alks")
+max_value = 20.0
+value = 10.0
+show_percentage = false
+
+[node name="HealthValue" type="Label" parent="."]
+custom_minimum_size = Vector2(150, 50)
+offset_left = 160.0
+offset_right = 310.0
+offset_bottom = 50.0
+text = "10/20"
+label_settings = SubResource("LabelSettings_i0k5k")
+horizontal_alignment = 1
+vertical_alignment = 1
