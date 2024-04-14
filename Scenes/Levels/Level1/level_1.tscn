@@ -1,8 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://cf3c6uac67ave"]
+[gd_scene load_steps=22 format=3 uid="uid://cf3c6uac67ave"]
 
 [ext_resource type="Texture2D" uid="uid://b16fk7bd4hftb" path="res://Assets/Sprites/Backgrounds/level1.png" id="1_5o1yw"]
 [ext_resource type="AudioStream" uid="uid://drvyjsgkkebw" path="res://Assets/Sounds/Themes/stage_1.wav" id="1_nnndp"]
-[ext_resource type="Script" path="res://Scenes/Levels/Level1/level_1.gd" id="1_oyf7d"]
 [ext_resource type="PackedScene" uid="uid://cgj1c856i77vv" path="res://Scenes/GameObject/Player/player.tscn" id="2_exma6"]
 [ext_resource type="PackedScene" uid="uid://b0wu4e6emajaq" path="res://Scenes/GameObject/Attacks/Level1/attack_1.tscn" id="2_tai2w"]
 [ext_resource type="PackedScene" uid="uid://bamer6ekrck24" path="res://Scenes/GameObject/Human/human.tscn" id="3_greyo"]
@@ -12,6 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://bqxe6miljlrwe" path="res://Scenes/UI/Fight/act_choice_buttons.tscn" id="6_kn736"]
 [ext_resource type="PackedScene" uid="uid://cfqw6qn8syvwk" path="res://Scenes/GameObject/Battle/battle_box.tscn" id="7_mc7l1"]
 [ext_resource type="PackedScene" uid="uid://b7crd40aenn2t" path="res://Scenes/GameObject/Player/battle_player.tscn" id="8_ox6ks"]
+[ext_resource type="Script" path="res://Scenes/Levels/Level1/attack_manager.gd" id="9_h3nmt"]
+[ext_resource type="Script" path="res://Scenes/Levels/Level1/level_manager.gd" id="9_liddr"]
+[ext_resource type="Script" path="res://Scenes/Levels/Level1/action_manager.gd" id="11_l6a4i"]
+[ext_resource type="Script" path="res://Scenes/Levels/Level1/act_manager.gd" id="12_mvnp8"]
 
 [sub_resource type="Animation" id="Animation_pve0s"]
 length = 0.001
@@ -102,7 +105,7 @@ tracks/1/keys = {
 tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".")
+tracks/2/path = NodePath("LevelManager")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -165,13 +168,31 @@ _data = {
 }
 
 [node name="Level1" type="Node2D"]
-script = ExtResource("1_oyf7d")
-attack_sequence = Array[PackedScene]([ExtResource("2_tai2w")])
-act_choices = Array[Resource("res://Resources/ActChoices/act.gd")]([ExtResource("3_o75j2"), ExtResource("4_hot5u")])
+
+[node name="LevelManager" type="Node" parent="." node_paths=PackedStringArray("attack_manager", "action_manager", "act_manager")]
+script = ExtResource("9_liddr")
+attack_manager = NodePath("../AttackManager")
+action_manager = NodePath("../ActionManager")
+act_manager = NodePath("../ActManager")
+
+[node name="ActionManager" type="Node" parent="." node_paths=PackedStringArray("level_manager")]
+script = ExtResource("11_l6a4i")
 action_buttons_scene = ExtResource("5_0wxtb")
-act_choice_buttons_scene = ExtResource("6_kn736")
+level_manager = NodePath("../LevelManager")
+
+[node name="AttackManager" type="Node" parent="." node_paths=PackedStringArray("animation_player", "level_manager")]
+script = ExtResource("9_h3nmt")
+attack_sequence = Array[PackedScene]([ExtResource("2_tai2w")])
 battle_box_scene = ExtResource("7_mc7l1")
 battle_player_scene = ExtResource("8_ox6ks")
+animation_player = NodePath("../AnimationPlayer")
+level_manager = NodePath("../LevelManager")
+
+[node name="ActManager" type="Node" parent="." node_paths=PackedStringArray("level_manager")]
+script = ExtResource("12_mvnp8")
+act_choices = Array[Resource("res://Resources/ActChoices/act.gd")]([ExtResource("3_o75j2"), ExtResource("4_hot5u")])
+act_choice_buttons_scene = ExtResource("6_kn736")
+level_manager = NodePath("../LevelManager")
 
 [node name="Background" type="TextureRect" parent="."]
 modulate = Color(0.172549, 0.188235, 0.184314, 1)
