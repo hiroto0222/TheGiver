@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var hit_box_area: Area2D = $HitBoxArea2D
 @onready var immune_timer: Timer = $ImmuneTimer
 @onready var anim: AnimationPlayer = $AnimationPlayer
+@onready var audio: AudioStreamPlayer = $AudioStreamPlayer
 
 var is_immune := false
 
@@ -41,6 +42,7 @@ func on_body_entered(body: Node2D) -> void:
 		return
 
 	# damage player
+	audio.play()
 	PlayerState.decrease_health(body.attack_damage)
 
 	# start immune timer

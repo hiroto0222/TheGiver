@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://b7crd40aenn2t"]
+[gd_scene load_steps=9 format=3 uid="uid://b7crd40aenn2t"]
 
 [ext_resource type="Script" path="res://Scenes/GameObject/Player/battle_player.gd" id="1_lhj6r"]
 [ext_resource type="Texture2D" uid="uid://duhcjvytpuxy4" path="res://Assets/Sprites/Characters/Mosquito/heart.png" id="1_xfr32"]
+[ext_resource type="AudioStream" uid="uid://d103cp8a8r8cq" path="res://Assets/Sounds/Effects/damage.ogg" id="3_7x54k"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mbo2w"]
 radius = 12.0
@@ -79,3 +80,7 @@ shape = SubResource("CapsuleShape2D_kwosp")
 libraries = {
 "": SubResource("AnimationLibrary_yyevt")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_7x54k")
+volume_db = -10.0
