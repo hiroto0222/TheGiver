@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bqi6c6a6jf3l2"]
 
-[ext_resource type="Script" path="res://Scenes/GameObject/Attacks/Level1/saw_attack.gd" id="1_atwxl"]
+[ext_resource type="Script" path="res://Scenes/GameObject/Attacks/Level1/Attack1/saw_attack.gd" id="1_atwxl"]
 [ext_resource type="Texture2D" uid="uid://bs2k0jn1tsp2r" path="res://Assets/Sprites/Characters/Human/Worker/Attacks/spheresaw.png" id="1_v6lk6"]
 
 [sub_resource type="Animation" id="Animation_ssxp3"]

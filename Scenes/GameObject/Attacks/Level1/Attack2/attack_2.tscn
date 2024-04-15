@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://gq78seqt4kjp"]
+
+[ext_resource type="Script" path="res://Scenes/GameObject/Attacks/Level1/Attack2/attack_2.gd" id="1_7bjgp"]
+[ext_resource type="PackedScene" uid="uid://brqnd5n62t36v" path="res://Scenes/GameObject/Attacks/Level1/Attack2/hex_nut_attack.tscn" id="2_3ijrq"]
+[ext_resource type="PackedScene" uid="uid://crep03hqih3q8" path="res://Scenes/GameObject/Attacks/Level1/Attack2/nut_attack.tscn" id="2_jycrl"]
+
+[node name="Attack2" type="Node"]
+script = ExtResource("1_7bjgp")
+attack_object_scenes = Array[PackedScene]([ExtResource("2_3ijrq"), ExtResource("2_jycrl")])
+attack_damage = 2

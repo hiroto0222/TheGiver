@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://brqnd5n62t36v"]
+
+[ext_resource type="Script" path="res://Scenes/GameObject/Attacks/Level1/Attack2/hex_nut_attack.gd" id="1_gid2p"]
+[ext_resource type="Texture2D" uid="uid://dovncce5jy7tp" path="res://Assets/Sprites/Characters/Human/Worker/Attacks/hexnut.png" id="2_lqudb"]
+
+[sub_resource type="Animation" id="Animation_c4hb5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_by414"]
+resource_name = "idle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2cfg6"]
+_data = {
+"RESET": SubResource("Animation_c4hb5"),
+"idle": SubResource("Animation_by414")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3qt86"]
+
+[node name="HexNutAttack" type="CharacterBody2D"]
+scale = Vector2(1.5, 1.5)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_gid2p")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_lqudb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2cfg6")
+}
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.399999, 1.56)
+shape = SubResource("RectangleShape2D_3qt86")

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0ql20nqykdv1"]
+
+[ext_resource type="Script" path="res://Scenes/GameObject/Attacks/Level1/Attack3/nail_attack.gd" id="1_14gyx"]
+[ext_resource type="Texture2D" uid="uid://h7li1ulm0i8v" path="res://Assets/Sprites/Characters/Human/Worker/Attacks/nail.png" id="1_qgitg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bvr13"]
+
+[node name="NailAttack" type="CharacterBody2D"]
+show_behind_parent = true
+scale = Vector2(0.2, 0.2)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_14gyx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_qgitg")
+offset = Vector2(2.08165e-12, 470)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(10, 465)
+scale = Vector2(5, 46.5697)
+shape = SubResource("RectangleShape2D_bvr13")

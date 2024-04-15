@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://cxmhoaiwws53q"]
+
+[ext_resource type="Script" path="res://Scenes/GameObject/Attacks/Level1/Attack3/nail_gun_attack.gd" id="1_ca35t"]
+[ext_resource type="Texture2D" uid="uid://bewpw2tsflb0t" path="res://Assets/Sprites/Characters/Human/Worker/Attacks/drillgun.png" id="2_ekf62"]
+[ext_resource type="PackedScene" uid="uid://d0ql20nqykdv1" path="res://Scenes/GameObject/Attacks/Level1/Attack3/nail_attack.tscn" id="2_gadqs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t83fj"]
+
+[sub_resource type="Animation" id="Animation_rabmk"]
+resource_name = "enter"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(0.287175, 1),
+"update": 0,
+"values": [Vector2(640, -170), Vector2(640, 2.08165e-12)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y2mrb"]
+_data = {
+"enter": SubResource("Animation_rabmk")
+}
+
+[node name="NailGunAttack" type="CharacterBody2D"]
+position = Vector2(640, -170)
+script = ExtResource("1_ca35t")
+nail_attack_scene = ExtResource("2_gadqs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_ekf62")
+centered = false
+offset = Vector2(-375, -900)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(3.42948, 10.0495)
+shape = SubResource("RectangleShape2D_t83fj")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_y2mrb")
+}
+autoplay = "enter"
