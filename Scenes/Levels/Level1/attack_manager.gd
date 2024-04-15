@@ -20,7 +20,8 @@ func on_start_attack_sequence() -> void:
 	battle_box_instance = battle_box_scene.instantiate() as Node2D
 
 	# add attack instance
-	attack_instance = attack_sequence[0].instantiate()
+	var i := randi_range(0, len(attack_sequence) - 1)
+	attack_instance = attack_sequence[i].instantiate()
 	attack_instance.timer.timeout.connect(on_attack_timer_timeout)
 
 	# add children

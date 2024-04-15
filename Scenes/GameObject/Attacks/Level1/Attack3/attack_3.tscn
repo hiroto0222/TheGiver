@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://c85x7cck0ljy7"]
+
+[ext_resource type="Script" path="res://Scenes/GameObject/Attacks/Level1/Attack3/attack_3.gd" id="1_pusl2"]
+[ext_resource type="PackedScene" uid="uid://cxmhoaiwws53q" path="res://Scenes/GameObject/Attacks/Level1/Attack3/nail_gun_attack.tscn" id="2_viicl"]
+
+[node name="Attack3" type="Node"]
+script = ExtResource("1_pusl2")
+attack_object_scene = ExtResource("2_viicl")
+attack_damage = 2
