@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ActsPerPhase" load_steps=4 format=3 uid="uid://dket0x5q8ahc0"]
+
+[ext_resource type="Resource" uid="uid://bc18n6utdldsx" path="res://Resources/ActChoices/Level1/Acts/act_check_2.tres" id="1_sl5ty"]
+[ext_resource type="Resource" uid="uid://cmgjl7jwrqiwj" path="res://Resources/ActChoices/Level1/Acts/act_throw_dust_1.tres" id="2_5woyp"]
+[ext_resource type="Script" path="res://Resources/ActChoices/ActsPerPhase.gd" id="2_kf0l5"]
+
+[resource]
+script = ExtResource("2_kf0l5")
+acts = Array[Resource("res://Resources/ActChoices/act.gd")]([ExtResource("1_sl5ty"), ExtResource("2_5woyp")])

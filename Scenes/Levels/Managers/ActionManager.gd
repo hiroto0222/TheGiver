@@ -26,6 +26,8 @@ func on_clean_up() -> void:
 # node configuration warnings
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings: Array[String] = []
+	if action_buttons_scene == null:
+		warnings.append("action_buttons_scene property is empty")
 	if level_manager == null:
 		warnings.append("level_manager property is empty")
 	return warnings

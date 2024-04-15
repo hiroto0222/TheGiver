@@ -34,10 +34,13 @@ directories/dch_directory={
 }
 directories/dtl_directory={
 "cut_scene_1_timeline": "res://Resources/Dialogic/Timelines/CutScenes/cut_scene_1_timeline.dtl",
-"level_1_act_check_default": "res://Resources/Dialogic/Timelines/Level1/level_1_act_check_default.dtl",
-"level_1_act_throw_dust_1_default": "res://Resources/Dialogic/Timelines/Level1/level_1_act_throw_dust_1_default.dtl",
+"level_1_act_check_1_default_1": "res://Resources/Dialogic/Timelines/Level1/level_1_act_check_1_default_1.dtl",
+"level_1_act_check_1_default_2": "res://Resources/Dialogic/Timelines/Level1/level_1_act_check_1_default_2.dtl",
+"level_1_act_throw_dust_1_default_1": "res://Resources/Dialogic/Timelines/Level1/level_1_act_throw_dust_1_default_1.dtl",
+"level_1_act_throw_dust_1_default_2": "res://Resources/Dialogic/Timelines/Level1/level_1_act_throw_dust_1_default_2.dtl",
 "level_1_act_throw_dust_1_success": "res://Resources/Dialogic/Timelines/Level1/level_1_act_throw_dust_1_success.dtl",
-"level_1_act_throw_rock_1_default": "res://Resources/Dialogic/Timelines/Level1/level_1_act_throw_rock_1_default.dtl"
+"level_1_act_throw_rock_1_default_1": "res://Resources/Dialogic/Timelines/Level1/level_1_act_throw_rock_1_default_1.dtl",
+"level_1_act_throw_rock_1_default_2": "res://Resources/Dialogic/Timelines/Level1/level_1_act_throw_rock_1_default_2.dtl"
 }
 layout/style_list=["res://Resources/Dialogic/Styles/cut_scene_style.tres", "res://Resources/Dialogic/Styles/battle_scene_style.tres"]
 layout/default_style="res://Resources/Dialogic/Styles/cut_scene_style.tres"

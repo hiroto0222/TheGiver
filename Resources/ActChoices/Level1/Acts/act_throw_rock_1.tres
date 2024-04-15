@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="Act" load_steps=3 format=3 uid="uid://badg85r6wyum6"]
+[gd_resource type="Resource" script_class="Act" load_steps=4 format=3 uid="uid://badg85r6wyum6"]
 
 [ext_resource type="Script" path="res://Resources/ActChoices/act.gd" id="1_6nf61"]
-[ext_resource type="Resource" path="res://Resources/Dialogic/Timelines/Level1/level_1_act_throw_rock_1_default.dtl" id="1_rpflw"]
+[ext_resource type="Resource" path="res://Resources/Dialogic/Timelines/Level1/level_1_act_throw_rock_1_default_1.dtl" id="1_6qsck"]
+[ext_resource type="Resource" path="res://Resources/Dialogic/Timelines/Level1/level_1_act_throw_rock_1_default_2.dtl" id="2_notvd"]
 
 [resource]
 script = ExtResource("1_6nf61")
-index = 1
 name = "Throw Rock"
-default_timeline = ExtResource("1_rpflw")
+default_timeline = Array[Resource("res://addons/dialogic/Resources/timeline.gd")]([ExtResource("1_6qsck"), ExtResource("2_notvd")])

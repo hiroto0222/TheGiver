@@ -1,3 +1,4 @@
+@tool
 extends ActManager
 
 
@@ -22,8 +23,10 @@ func on_act_choice_button_pressed(act_selected: Act, index: int) -> void:
 	# TODO: check conditions for successful act
 	# clean up buttons
 	act_choice_buttons_instance.queue_free()
+	# select random dialogue
+	var dialogue: DialogicTimeline = act_selected.default_timeline.pick_random()
 	# emit dialogue
-	Dialogic.start_timeline(act_selected.default_timeline)
+	Dialogic.start_timeline(dialogue)
 	# once dialogue finished, start attack sequence
 	Dialogic.timeline_ended.connect(on_act_dialogue_ended)
 

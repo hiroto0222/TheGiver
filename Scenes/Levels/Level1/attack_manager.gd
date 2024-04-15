@@ -1,3 +1,4 @@
+@tool
 extends AttackManager
 
 @export var dialog_background: ColorRect # TODO: move logic else where

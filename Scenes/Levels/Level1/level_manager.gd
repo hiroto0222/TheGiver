@@ -1,12 +1,7 @@
+@tool
 extends LevelManager
 
 signal intro_finished
-
-# level gimmicks
-@export var enemy: CharacterBody2D
-
-# level gimmick flags
-var mask_off := false
 
 
 func _ready() -> void:

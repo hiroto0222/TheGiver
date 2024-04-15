@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Act" load_steps=4 format=3 uid="uid://bc18n6utdldsx"]
+
+[ext_resource type="Script" path="res://Resources/ActChoices/act.gd" id="1_0cgxi"]
+[ext_resource type="Resource" path="res://Resources/Dialogic/Timelines/Level1/level_1_act_check_1_default_1.dtl" id="1_dqmn1"]
+[ext_resource type="Resource" path="res://Resources/Dialogic/Timelines/Level1/level_1_act_check_1_default_2.dtl" id="2_edxhc"]
+
+[resource]
+script = ExtResource("1_0cgxi")
+name = "Check"
+default_timeline = Array[Resource("res://addons/dialogic/Resources/timeline.gd")]([ExtResource("1_dqmn1"), ExtResource("2_edxhc")])
