@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="ActsPerPhase" load_steps=2 format=3 uid="uid://droqd8rw62cob"]
+
+[ext_resource type="Script" path="res://Resources/ActChoices/ActsPerPhase.gd" id="2_71q4v"]
+
+[resource]
+script = ExtResource("2_71q4v")
+acts = Array[Resource("res://Resources/ActChoices/Act.gd")]([])

@@ -3,14 +3,16 @@ extends Node
 class_name ActManager
 
 signal cancelled
+signal act_selected
 signal act_sequence_ended
 
 # Game Objects
-@export var act_choices: Array[Act]  # head of linked list for each choices
+@export var act_choices: Array[ActsPerPhase]
 @export var act_choice_buttons_scene: PackedScene
 
 # Managers
 @export var level_manager: LevelManager
+@export var state_manager: StateManager
 
 # Instances
 var act_choice_buttons_instance: ActChoiceButtons
@@ -41,6 +43,8 @@ func _get_configuration_warnings() -> PackedStringArray:
 	var warnings: Array[String] = []
 	if level_manager == null:
 		warnings.append("level_manager property is empty")
+	if state_manager == null:
+		warnings.append("state_manager property is empty")
 	if len(act_choices) < 1:
 		warnings.append("act_choices property is empty")
 	if act_choice_buttons_scene == null:

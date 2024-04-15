@@ -5,9 +5,6 @@ signal intro_finished
 # level gimmicks
 @export var enemy: CharacterBody2D
 
-# level gimmick flags
-var mask_off := false
-
 
 func _ready() -> void:
 	# handle attacks
@@ -33,12 +30,10 @@ func on_act_cancelled() -> void:
 
 
 func on_act_sequence_ended() -> void:
-	act_cnt += 1
 	start_attack_sequence.emit()
 
 
 func on_attack_sequence_ended() -> void:
-	attack_cnt += 1
 	clean_up.emit()
 
 

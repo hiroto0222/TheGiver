@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cf3c6uac67ave"]
+[gd_scene load_steps=27 format=3 uid="uid://cf3c6uac67ave"]
 
 [ext_resource type="Texture2D" uid="uid://b16fk7bd4hftb" path="res://Assets/Sprites/Backgrounds/level1.png" id="1_5o1yw"]
 [ext_resource type="AudioStream" uid="uid://drvyjsgkkebw" path="res://Assets/Sounds/Themes/stage_1.wav" id="1_nnndp"]
@@ -8,12 +8,17 @@
 [ext_resource type="PackedScene" uid="uid://bamer6ekrck24" path="res://Scenes/GameObject/Human/human.tscn" id="3_greyo"]
 [ext_resource type="PackedScene" uid="uid://60hf1qtqp41i" path="res://Scenes/UI/Fight/action_buttons.tscn" id="5_0wxtb"]
 [ext_resource type="PackedScene" uid="uid://gq78seqt4kjp" path="res://Scenes/GameObject/Attacks/Level1/Attack2/attack_2.tscn" id="6_dgitf"]
+[ext_resource type="PackedScene" uid="uid://bqxe6miljlrwe" path="res://Scenes/UI/Fight/act_choice_buttons.tscn" id="6_kn736"]
 [ext_resource type="PackedScene" uid="uid://cfqw6qn8syvwk" path="res://Scenes/GameObject/Battle/battle_box.tscn" id="7_mc7l1"]
 [ext_resource type="PackedScene" uid="uid://c85x7cck0ljy7" path="res://Scenes/GameObject/Attacks/Level1/Attack3/attack_3.tscn" id="7_scccm"]
 [ext_resource type="PackedScene" uid="uid://b7crd40aenn2t" path="res://Scenes/GameObject/Player/battle_player.tscn" id="8_ox6ks"]
 [ext_resource type="Script" path="res://Scenes/Levels/Level1/attack_manager.gd" id="9_h3nmt"]
 [ext_resource type="Script" path="res://Scenes/Levels/Level1/level_manager.gd" id="9_liddr"]
+[ext_resource type="Resource" uid="uid://bgg6b2wbttm4i" path="res://Resources/ActChoices/Level1/Phases/phase_1.tres" id="11_3naku"]
 [ext_resource type="Script" path="res://Scenes/Levels/Level1/action_manager.gd" id="11_l6a4i"]
+[ext_resource type="Resource" uid="uid://cmag5tsjlkv6i" path="res://Resources/ActChoices/Level1/Phases/phase_2.tres" id="12_335v1"]
+[ext_resource type="Script" path="res://Scenes/Levels/Level1/act_manager.gd" id="12_mvnp8"]
+[ext_resource type="Resource" uid="uid://c450h7qvfp37u" path="res://Resources/ActChoices/Level1/Phases/phase_3.tres" id="13_n4yot"]
 [ext_resource type="PackedScene" uid="uid://t7jllache8ae" path="res://Scenes/UI/Fight/player_info.tscn" id="15_uistj"]
 
 [sub_resource type="Animation" id="Animation_pve0s"]
@@ -209,12 +214,11 @@ _data = {
 script = ExtResource("9_liddr")
 attack_manager = NodePath("../AttackManager")
 action_manager = NodePath("../ActionManager")
-act_manager = NodePath("")
+act_manager = NodePath("../ActManager")
 
-[node name="StateManager" type="Node" parent="." node_paths=PackedStringArray("level_manager", "act_manager")]
+[node name="StateManager" type="Node" parent="." node_paths=PackedStringArray("level_manager")]
 script = ExtResource("2_uw4u3")
 level_manager = NodePath("../LevelManager")
-act_manager = NodePath("")
 total_phase_count = 3
 
 [node name="ActionManager" type="Node" parent="." node_paths=PackedStringArray("level_manager")]
@@ -222,58 +226,4 @@ script = ExtResource("11_l6a4i")
 action_buttons_scene = ExtResource("5_0wxtb")
 level_manager = NodePath("../LevelManager")
 
-[node name="AttackManager" type="Node" parent="." node_paths=PackedStringArray("dialog_background", "animation_player", "level_manager")]
-script = ExtResource("9_h3nmt")
-dialog_background = NodePath("../DialogBackground")
-attack_sequence = Array[PackedScene]([ExtResource("2_tai2w"), ExtResource("6_dgitf"), ExtResource("7_scccm")])
-battle_box_scene = ExtResource("7_mc7l1")
-battle_player_scene = ExtResource("8_ox6ks")
-animation_player = NodePath("../AnimationPlayer")
-level_manager = NodePath("../LevelManager")
-
-[node name="Background" type="TextureRect" parent="."]
-modulate = Color(0.172549, 0.188235, 0.184314, 1)
-custom_minimum_size = Vector2(1280, 720)
-offset_right = 1280.0
-offset_bottom = 720.0
-mouse_filter = 2
-texture = ExtResource("1_5o1yw")
-expand_mode = 2
-
-[node name="Player" parent="." instance=ExtResource("2_exma6")]
-position = Vector2(200, 300)
-
-[node name="Human" parent="." instance=ExtResource("3_greyo")]
-position = Vector2(57, -81)
-
-[node name="BattleArea" type="Node2D" parent="." groups=["battle_area_layer"]]
-y_sort_enabled = true
-
-[node name="Entities" type="Node2D" parent="." groups=["entities_layer"]]
-
-[node name="PlayerInfo" parent="." instance=ExtResource("15_uistj")]
-offset_right = 1280.0
-offset_bottom = 50.0
-
-[node name="DialogBackground" type="ColorRect" parent="."]
-offset_top = 560.0
-offset_right = 1280.0
-offset_bottom = 720.0
-color = Color(0, 0, 0, 1)
-
-[node name="IntroCover" type="ColorRect" parent="."]
-visible = false
-custom_minimum_size = Vector2(1280, 720)
-offset_right = 1280.0
-offset_bottom = 720.0
-color = Color(0, 0, 0, 1)
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("1_nnndp")
-autoplay = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_lkf55")
-}
-autoplay = "intro_sequence"
+[node name="AttackManager" type="Node" parent="." node_paths=PackedStringArray("dialog_background", "animation_playe

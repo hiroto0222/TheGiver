@@ -10,7 +10,7 @@ func on_start_act_sequence() -> void:
 	act_choice_buttons_instance = act_choice_buttons_scene.instantiate() as ActChoiceButtons
 
 	# assign current act choices
-	act_choice_buttons_instance.act_choices = act_choices
+	#act_choice_buttons_instance.act_choices = act_choices
 
 	act_choice_buttons_instance.cancel.connect(on_act_choice_buttons_cancel)
 	act_choice_buttons_instance.act_selected.connect(on_act_choice_button_pressed)
@@ -20,6 +20,7 @@ func on_start_act_sequence() -> void:
 
 func on_act_choice_button_pressed(act_selected: Act, index: int) -> void:
 	# TODO: check conditions for successful act
+	act_selected.emit(act_selected)
 	# clean up buttons
 	act_choice_buttons_instance.queue_free()
 	# emit dialogue
