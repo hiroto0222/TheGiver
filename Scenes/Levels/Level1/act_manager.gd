@@ -10,8 +10,11 @@ func _ready() -> void:
 func on_start_act_sequence() -> void:
 	act_choice_buttons_instance = act_choice_buttons_scene.instantiate() as ActChoiceButtons
 
+	# current phase
+	var curr_phase := state_manager.phase
+
 	# assign current act choices
-	act_choice_buttons_instance.act_choices = act_choices
+	act_choice_buttons_instance.act_choices = act_choices_per_phase[curr_phase].acts
 
 	act_choice_buttons_instance.cancel.connect(on_act_choice_buttons_cancel)
 	act_choice_buttons_instance.act_selected.connect(on_act_choice_button_pressed)
@@ -22,7 +25,8 @@ func on_start_act_sequence() -> void:
 func on_act_choice_button_pressed(act_selected: Act, index: int) -> void:
 	# TODO: check conditions for successful act
 	# clean up buttons
-	act_choice_buttons_instance.queue_free()
+	act_choice_buttons_instance.cancel.disconnect(on_act_choice_buttons_cancel)
+	act_choice_buttons_instance.hide()
 	# select random dialogue
 	var dialogue: DialogicTimeline = act_selected.default_timeline.pick_random()
 	# emit dialogue

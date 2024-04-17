@@ -10,9 +10,7 @@ signal start_act_sequence
 @export var attack_manager: AttackManager
 @export var action_manager: ActionManager
 @export var act_manager: ActManager
-
-var attack_cnt := 0
-var act_cnt := 0
+@export var state_manager: StateManager
 
 
 func on_fight_selected() -> void:
@@ -44,4 +42,6 @@ func _get_configuration_warnings() -> PackedStringArray:
 		warnings.append("action_manager property is empty")
 	if act_manager == null:
 		warnings.append("act_manager property is empty")
+	if state_manager == null:
+		warnings.append("state_manager property is empty")
 	return warnings
