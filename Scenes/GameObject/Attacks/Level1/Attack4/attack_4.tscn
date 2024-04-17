@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bofdqjbwksn7d"]
+
+[ext_resource type="Script" path="res://Scenes/GameObject/Attacks/Level1/Attack4/attack_4.gd" id="1_06eo6"]
+[ext_resource type="PackedScene" uid="uid://b043tuup5dfcb" path="res://Scenes/GameObject/Attacks/Level1/Attack4/saw_attack.tscn" id="2_vdkjm"]
+
+[node name="Attack4" type="Node"]
+script = ExtResource("1_06eo6")
+attack_object_scene = ExtResource("2_vdkjm")
+attack_duration = 12
+attack_damage = 2
