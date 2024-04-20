@@ -3,6 +3,8 @@ extends AttackManager
 
 @export var dialog_background: ColorRect # TODO: move logic else where
 
+var curr_attack_idx := 0
+
 
 func _ready() -> void:
 	level_manager.start_attack_sequence.connect(on_start_attack_sequence)
@@ -21,8 +23,8 @@ func on_start_attack_sequence() -> void:
 	battle_box_instance = battle_box_scene.instantiate() as Node2D
 
 	# add attack instance
-	var i := randi_range(0, len(attack_sequence) - 1)
-	attack_instance = attack_sequence[i].instantiate()
+	attack_instance = attack_sequence[curr_attack_idx].instantiate()
+	curr_attack_idx = (curr_attack_idx + 1) % len(attack_sequence)
 	attack_instance.timer.timeout.connect(on_attack_timer_timeout)
 
 	# add children

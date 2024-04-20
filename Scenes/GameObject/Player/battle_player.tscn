@@ -1,8 +1,23 @@
-[gd_scene load_steps=9 format=3 uid="uid://b7crd40aenn2t"]
+[gd_scene load_steps=11 format=3 uid="uid://b7crd40aenn2t"]
 
 [ext_resource type="Script" path="res://Scenes/GameObject/Player/battle_player.gd" id="1_lhj6r"]
-[ext_resource type="Texture2D" uid="uid://duhcjvytpuxy4" path="res://Assets/Sprites/Characters/Mosquito/heart.png" id="1_xfr32"]
+[ext_resource type="Texture2D" uid="uid://c87dptrdckgt0" path="res://Assets/Sprites/Characters/Mosquito/mosq_idle_1.png" id="2_ipgue"]
 [ext_resource type="AudioStream" uid="uid://d103cp8a8r8cq" path="res://Assets/Sounds/Effects/damage.ogg" id="3_7x54k"]
+[ext_resource type="Texture2D" uid="uid://cjy0mhygksect" path="res://Assets/Sprites/Characters/Mosquito/mosq_idle_2.png" id="3_nshvr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_si4vc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ipgue")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_nshvr")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mbo2w"]
 radius = 12.0
@@ -15,7 +30,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -32,8 +47,8 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:modulate")
-tracks/0/interp = 2
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2),
@@ -58,10 +73,12 @@ max_speed = 300
 wait_time = 3.0
 one_shot = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = 10
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("1_xfr32")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.03, 0.03)
+sprite_frames = SubResource("SpriteFrames_si4vc")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.546155
 
 [node name="HitBoxArea2D" type="Area2D" parent="."]
 collision_layer = 0

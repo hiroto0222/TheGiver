@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=3 uid="uid://wxhf0qc8tpvm"]
+
+[ext_resource type="Script" path="res://Scenes/GameObject/Fight/line_horizontal.gd" id="1_oflps"]
+[ext_resource type="AudioStream" uid="uid://bo1udc73l08p8" path="res://Assets/Sounds/Effects/hit.wav" id="2_bymk2"]
+
+[sub_resource type="Animation" id="Animation_agxte"]
+resource_name = "flicker"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ltfjl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_io8q2"]
+_data = {
+"RESET": SubResource("Animation_ltfjl"),
+"flicker": SubResource("Animation_agxte")
+}
+
+[node name="LineHorizontal" type="ColorRect"]
+custom_minimum_size = Vector2(2, 720)
+offset_left = -2.0
+offset_bottom = 720.0
+pivot_offset = Vector2(1, 2.08165e-12)
+script = ExtResource("1_oflps")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_io8q2")
+}
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_bymk2")
+volume_db = -5.0

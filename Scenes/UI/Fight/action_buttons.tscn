@@ -42,24 +42,24 @@ columns = 4
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_right = NodePath("../ActButton")
-text = "Fight"
+text = "FIGHT"
 
 [node name="ActButton" parent="MarginContainer/PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_78jl4")]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_left = NodePath("../FightButton")
 focus_neighbor_right = NodePath("../ItemButton")
-text = "Act"
+text = "ACT"
 
 [node name="ItemButton" parent="MarginContainer/PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_78jl4")]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_left = NodePath("../ActButton")
 focus_neighbor_right = NodePath("../DefendButton")
-text = "Item"
+text = "ITEM"
 
 [node name="DefendButton" parent="MarginContainer/PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_78jl4")]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_left = NodePath("../ItemButton")
-text = "Defend"
+text = "DEFEND"
