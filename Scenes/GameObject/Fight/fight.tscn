@@ -1,0 +1,69 @@
+[gd_scene load_steps=9 format=3 uid="uid://dmfrx1pwaav62"]
+
+[ext_resource type="Texture2D" uid="uid://d30acyprunb3j" path="res://Assets/Sprites/Misc/target.png" id="1_eru0v"]
+[ext_resource type="Script" path="res://Scenes/GameObject/Fight/fight.gd" id="1_wenql"]
+[ext_resource type="PackedScene" uid="uid://wxhf0qc8tpvm" path="res://Scenes/GameObject/Fight/line_horizontal.tscn" id="2_ke431"]
+[ext_resource type="PackedScene" uid="uid://51dh0lajkn04" path="res://Scenes/GameObject/Fight/line_vertical.tscn" id="3_7x6va"]
+[ext_resource type="AudioStream" uid="uid://wbl1e5hwi0dp" path="res://Assets/Sounds/Effects/heart_beat.wav" id="5_3d0p1"]
+
+[sub_resource type="Animation" id="Animation_xc8ym"]
+resource_name = "enter"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 2),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [Vector2(2.08165e-12, 2.08165e-12), Vector2(0.3, 0.3)]
+}
+
+[sub_resource type="Animation" id="Animation_d7m7g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.3, 0.3)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cgwgo"]
+_data = {
+"RESET": SubResource("Animation_d7m7g"),
+"enter": SubResource("Animation_xc8ym")
+}
+
+[node name="Fight" type="Node2D"]
+script = ExtResource("1_wenql")
+line_horizontal = ExtResource("2_ke431")
+line_vertical = ExtResource("3_7x6va")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(640, 360)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_eru0v")
+offset = Vector2(5, 5)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cgwgo")
+}
+autoplay = "enter"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_3d0p1")
+volume_db = -5.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cf3c6uac67ave"]
+[gd_scene load_steps=32 format=3 uid="uid://cf3c6uac67ave"]
 
 [ext_resource type="Texture2D" uid="uid://b16fk7bd4hftb" path="res://Assets/Sprites/Backgrounds/level1.png" id="1_5o1yw"]
 [ext_resource type="Script" path="res://Scenes/Levels/Level1/level_manager.gd" id="1_6kdva"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" path="res://Scenes/Levels/Level1/act_manager.gd" id="3_cuacp"]
 [ext_resource type="PackedScene" uid="uid://bamer6ekrck24" path="res://Scenes/GameObject/Human/human.tscn" id="3_greyo"]
 [ext_resource type="PackedScene" uid="uid://60hf1qtqp41i" path="res://Scenes/UI/Fight/action_buttons.tscn" id="3_iheqm"]
+[ext_resource type="Script" path="res://Scenes/Levels/Level1/fight_manager.gd" id="3_u5ubm"]
+[ext_resource type="PackedScene" uid="uid://dmfrx1pwaav62" path="res://Scenes/GameObject/Fight/fight.tscn" id="4_16ovy"]
 [ext_resource type="Script" path="res://Scenes/Levels/Level1/attack_manager.gd" id="4_f5y6i"]
 [ext_resource type="PackedScene" uid="uid://bqxe6miljlrwe" path="res://Scenes/UI/Fight/act_choice_buttons.tscn" id="5_fh83f"]
 [ext_resource type="Resource" uid="uid://bilyvtfxb8ukv" path="res://Resources/ActChoices/Level1/phase_1.tres" id="5_lbuu2"]
@@ -21,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://b7crd40aenn2t" path="res://Scenes/GameObject/Player/battle_player.tscn" id="11_irlci"]
 [ext_resource type="PackedScene" uid="uid://bofdqjbwksn7d" path="res://Scenes/GameObject/Attacks/Level1/Attack4/attack_4.tscn" id="14_saqwq"]
 [ext_resource type="PackedScene" uid="uid://t7jllache8ae" path="res://Scenes/UI/Fight/player_info.tscn" id="15_uistj"]
+[ext_resource type="Texture2D" uid="uid://ct2xdd4yy0bpw" path="res://Assets/Sprites/Misc/lighting.png" id="18_ktrek"]
 
 [sub_resource type="Animation" id="Animation_pve0s"]
 length = 0.001
@@ -59,6 +62,42 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(200, 300)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Player:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Human:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(57, -81)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_1pll0"]
@@ -200,10 +239,74 @@ tracks/2/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_k4gaq"]
+resource_name = "enter_fight"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [Vector2(200, 300), Vector2(640, 300)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Player:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2.2, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(2.08165e-12, 2.08165e-12)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Human:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(57, -81), Vector2(900, -81)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -80.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lkf55"]
 _data = {
 "RESET": SubResource("Animation_pve0s"),
 "enter_battle": SubResource("Animation_1pll0"),
+"enter_fight": SubResource("Animation_k4gaq"),
 "exit_battle": SubResource("Animation_a777u"),
 "intro_sequence": SubResource("Animation_2we2q"),
 "no_intro": SubResource("Animation_bf7it")
@@ -211,9 +314,10 @@ _data = {
 
 [node name="Level1" type="Node2D"]
 
-[node name="LevelManager" type="Node" parent="." node_paths=PackedStringArray("enemy_body", "attack_manager", "action_manager", "act_manager", "state_manager")]
+[node name="LevelManager" type="Node" parent="." node_paths=PackedStringArray("enemy_body", "fight_manager", "attack_manager", "action_manager", "act_manager", "state_manager")]
 script = ExtResource("1_6kdva")
 enemy_body = NodePath("../Human")
+fight_manager = NodePath("../FightManager")
 attack_manager = NodePath("../AttackManager")
 action_manager = NodePath("../ActionManager")
 act_manager = NodePath("../ActManager")
@@ -223,6 +327,13 @@ state_manager = NodePath("../StateManager")
 script = ExtResource("2_kksd3")
 attack_manager = NodePath("../AttackManager")
 act_manager = NodePath("../ActManager")
+
+[node name="FightManager" type="Node" parent="." node_paths=PackedStringArray("dialog_background", "animation_player", "level_manager")]
+script = ExtResource("3_u5ubm")
+dialog_background = NodePath("../DialogBackground")
+fight_scene = ExtResource("4_16ovy")
+animation_player = NodePath("../AnimationPlayer")
+level_manager = NodePath("../LevelManager")
 
 [node name="ActManager" type="Node" parent="." node_paths=PackedStringArray("level_manager", "state_manager")]
 script = ExtResource("3_cuacp")
@@ -252,6 +363,15 @@ offset_right = 1280.0
 offset_bottom = 720.0
 mouse_filter = 2
 texture = ExtResource("1_5o1yw")
+expand_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+modulate = Color(1, 1, 1, 0.435294)
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("18_ktrek")
 expand_mode = 2
 
 [node name="Player" parent="." instance=ExtResource("2_exma6")]
@@ -290,4 +410,4 @@ autoplay = true
 libraries = {
 "": SubResource("AnimationLibrary_lkf55")
 }
-autoplay = "no_intro"
+autoplay = "intro_sequence"
