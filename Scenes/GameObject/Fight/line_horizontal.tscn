@@ -58,4 +58,3 @@ one_shot = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_bymk2")
-volume_db = -5.0

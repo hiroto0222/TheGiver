@@ -1,6 +1,7 @@
 extends CharacterBody2D
 class_name FightApproachKeyInput
 
+signal destroyed
 
 @export var key_letter: String
 
@@ -35,6 +36,7 @@ func _process(delta: float) -> void:
 
 	if position.x > 1280 + 50:
 		queue_free()
+		destroyed.emit()
 
 
 func success(pitch_scale: float) -> void:
@@ -52,6 +54,7 @@ func success(pitch_scale: float) -> void:
 func miss() -> void:
 	sprite_2d.modulate = Color("#cc0000")
 
+	PlayerState.decrease_health(2)
 	miss_audio_player.play()
 
 	# shake anim

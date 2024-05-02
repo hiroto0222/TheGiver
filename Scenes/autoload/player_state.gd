@@ -3,7 +3,7 @@ extends Node
 signal health_changed(health: int)
 signal max_health_changed(max_health: int)
 
-@export var max_health := 20
+@export var max_health := 40
 
 var player_health := max_health
 

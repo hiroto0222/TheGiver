@@ -25,7 +25,7 @@ func _ready() -> void:
 	line_vertical_instance.line_speed = vertical_speed
 	line_vertical_instance.ended.connect(on_line_vertical_ended)
 
-	timer.wait_time = randf_range(2, 4)
+	timer.wait_time = randf_range(1, 2)
 	timer.timeout.connect(on_horizontal_timer_timeout)
 
 

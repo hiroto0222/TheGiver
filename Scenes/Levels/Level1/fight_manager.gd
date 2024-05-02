@@ -17,7 +17,32 @@ func _ready() -> void:
 	level_manager.start_fight_sequence.connect(on_start_fight_sequence)
 
 
+func clean_up() -> void:
+	if fight_approach_scene_instance != null:
+		fight_approach_scene_instance.queue_free()
+	if fight_scene_instance != null:
+		fight_scene_instance.queue_free()
+	fight_sequence_ended.emit()
+	animation_player.play("exit_fight")
+
+
 func on_start_fight_sequence() -> void:
+	fight_approach_scene_instance = fight_approach_scene.instantiate() as FightApproach
+	fight_approach_scene_instance.success.connect(on_fight_approach_scene_success)
+	fight_approach_scene_instance.fail.connect(on_fight_approach_scene_fail)
+
+	animation_player.play("enter_fight")
+	add_child(fight_approach_scene_instance)
+
+
+func on_fight_approach_scene_fail() -> void:
+	clean_up()
+
+
+func on_fight_approach_scene_success() -> void:
+	fight_approach_scene_instance.queue_free()
+	dialog_background.hide()
+
 	fight_scene_instance = fight_scene.instantiate() as Fight
 	var curr_phase := mini(state_manager.phase, len(line_speeds) - 1)
 	var min_speed: float = line_speeds[curr_phase][0]
@@ -27,15 +52,14 @@ func on_start_fight_sequence() -> void:
 
 	fight_scene_instance.ended.connect(on_fight_ended)
 
-	dialog_background.hide()
-	animation_player.animation_finished.connect(on_animation_enter_finished)
-	animation_player.play("enter_fight")
+	add_child(fight_scene_instance)
+	fight_scene_instance.start()
 
 
 func on_fight_ended(pos_x: float, pos_y: float) -> void:
 	var delay_timer := Timer.new()
 	delay_timer.one_shot = true
-	delay_timer.wait_time = 2
+	delay_timer.wait_time = 0.5
 	delay_timer.timeout.connect(on_delay_timer_timeout.bind(pos_x, pos_y))
 
 	add_child(delay_timer)
@@ -55,17 +79,4 @@ func on_delay_timer_timeout(pos_x: float, pos_y: float) -> void:
 
 
 func on_slapping_hand_ended() -> void:
-	fight_scene_instance.queue_free()
-	animation_player.animation_finished.connect(on_animation_exit_finished)
-	animation_player.play_backwards("enter_fight")
-
-
-func on_animation_enter_finished(anim_name: String) -> void:
-	animation_player.animation_finished.disconnect(on_animation_enter_finished)
-	add_child(fight_scene_instance)
-	fight_scene_instance.start()
-
-
-func on_animation_exit_finished(anim_name: String) -> void:
-	animation_player.animation_finished.disconnect(on_animation_exit_finished)
-	fight_sequence_ended.emit()
+	clean_up()

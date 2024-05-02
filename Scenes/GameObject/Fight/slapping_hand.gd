@@ -40,7 +40,7 @@ func _process(delta: float) -> void:
 
 	if move_back:
 		var dir := (init_pos - hand_sprite.position).normalized()
-		var move_distance := 500 * delta
+		var move_distance := 1000 * delta
 		hand_sprite.position += dir * min(move_distance, (init_pos - hand_sprite.position).length())
 
 	if hand_sprite.position == init_pos and move_back:
