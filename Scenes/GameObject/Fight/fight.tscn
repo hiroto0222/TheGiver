@@ -6,6 +6,21 @@
 [ext_resource type="PackedScene" uid="uid://51dh0lajkn04" path="res://Scenes/GameObject/Fight/line_vertical.tscn" id="3_7x6va"]
 [ext_resource type="AudioStream" uid="uid://wbl1e5hwi0dp" path="res://Assets/Sounds/Effects/heart_beat.wav" id="5_3d0p1"]
 
+[sub_resource type="Animation" id="Animation_d7m7g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.3, 0.3)]
+}
+
 [sub_resource type="Animation" id="Animation_xc8ym"]
 resource_name = "enter"
 length = 2.0
@@ -20,21 +35,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(0.2, 1),
 "update": 0,
 "values": [Vector2(2.08165e-12, 2.08165e-12), Vector2(0.3, 0.3)]
-}
-
-[sub_resource type="Animation" id="Animation_d7m7g"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.3, 0.3)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cgwgo"]

@@ -12,20 +12,20 @@ signal ended(x_pos: float, y_pos: float)
 var line_horizontal_instance: ColorRect
 var line_vertical_instance: ColorRect
 
-var speed := 1000
-var speeds: Array[int] = [300, 1500, 1750, 2000]
+var horizontal_speed: float = 1000
+var vertical_speed: float = 1000
 
 
 func _ready() -> void:
 	line_horizontal_instance = line_horizontal.instantiate() as ColorRect
-	line_horizontal_instance.line_speed = speeds.pick_random()
+	line_horizontal_instance.line_speed = horizontal_speed
 	line_horizontal_instance.ended.connect(on_line_horizontal_ended)
 
 	line_vertical_instance = line_vertical.instantiate() as ColorRect
-	line_vertical_instance.line_speed = speeds.pick_random()
+	line_vertical_instance.line_speed = vertical_speed
 	line_vertical_instance.ended.connect(on_line_vertical_ended)
 
-	timer.wait_time = randf_range(3, 5)
+	timer.wait_time = randf_range(2, 4)
 	timer.timeout.connect(on_horizontal_timer_timeout)
 
 
@@ -49,11 +49,4 @@ func on_vertical_timer_timeout() -> void:
 
 
 func on_line_vertical_ended() -> void:
-	timer.wait_time = 2
-	timer.timeout.connect(on_end_timeout)
-	timer.start()
-
-
-func on_end_timeout() -> void:
-	audio.stop()
 	ended.emit(line_horizontal_instance.position.x, line_vertical_instance.position.y)

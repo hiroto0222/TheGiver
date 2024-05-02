@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://2lwbrvsvahr4"]
+
+[ext_resource type="Script" path="res://Scenes/GameObject/Fight/slapping_hand.gd" id="1_g3xo4"]
+[ext_resource type="Texture2D" uid="uid://cdb7dwrcbt6t" path="res://Assets/Sprites/Misc/hand.png" id="1_ovuhx"]
+[ext_resource type="AudioStream" uid="uid://b81lgf55kyidi" path="res://Assets/Sounds/Effects/slap.wav" id="3_5ie4j"]
+
+[node name="SlappingHand" type="Node2D"]
+script = ExtResource("1_g3xo4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1600, 360)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_ovuhx")
+offset = Vector2(400, 800)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_5ie4j")
+volume_db = -5.0
+autoplay = true

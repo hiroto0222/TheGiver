@@ -10,6 +10,7 @@ signal fight_sequence_ended
 
 # Managers
 @export var level_manager: LevelManager
+@export var state_manager: StateManager
 
 # Instances
 var fight_scene_instance: Fight
@@ -30,6 +31,8 @@ func _get_configuration_warnings() -> PackedStringArray:
 		warnings.append("fight_scene property is empty")
 	if animation_player == null:
 		warnings.append("animation_player property is empty")
+	if state_manager == null:
+		warnings.append("state_manager property is empty")
 	if level_manager == null:
 		warnings.append("level_manager property is empty")
 	return warnings
