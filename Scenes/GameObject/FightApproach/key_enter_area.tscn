@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=3 uid="uid://c3jn30n5mhf0i"]
+
+[ext_resource type="Texture2D" uid="uid://bgcjgogbcxb3u" path="res://Assets/Sprites/KeyInputs/keyboard_outline.png" id="1_bk0f0"]
+[ext_resource type="Script" path="res://Scenes/GameObject/FightApproach/key_enter_area.gd" id="1_q58hl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rvrli"]
+size = Vector2(30, 30)
+
+[sub_resource type="Animation" id="Animation_e6sf3"]
+resource_name = "enter"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.4, 1),
+"update": 0,
+"values": [Vector2(2.08165e-12, 2.08165e-12), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_i4861"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yjotk"]
+_data = {
+"RESET": SubResource("Animation_i4861"),
+"enter": SubResource("Animation_e6sf3")
+}
+
+[node name="KeyEnterArea" type="Node2D"]
+position = Vector2(640, 640)
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_q58hl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_bk0f0")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_rvrli")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_yjotk")
+}
+autoplay = "enter"

@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://cgjxsj2p8ktvh"]
+
+[ext_resource type="Script" path="res://Scenes/GameObject/FightApproach/key_input.gd" id="1_jwosb"]
+[ext_resource type="Texture2D" uid="uid://3631qmsrn3mx" path="res://Assets/Sprites/KeyInputs/a.png" id="2_4ixms"]
+[ext_resource type="AudioStream" uid="uid://bo1udc73l08p8" path="res://Assets/Sounds/Effects/hit.wav" id="3_mhejb"]
+[ext_resource type="AudioStream" uid="uid://d103cp8a8r8cq" path="res://Assets/Sounds/Effects/damage.ogg" id="3_ouk3a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6miah"]
+size = Vector2(45, 45)
+
+[node name="KeyInput" type="CharacterBody2D"]
+position = Vector2(543, 640)
+scale = Vector2(1.1, 1.1)
+script = ExtResource("1_jwosb")
+key_letter = "w"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_4ixms")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6miah")
+
+[node name="Success" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_mhejb")
+
+[node name="Miss" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ouk3a")
+volume_db = -15.0

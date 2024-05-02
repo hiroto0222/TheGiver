@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 	if not line_stopped:
 		position.y += line_speed * delta
 
-	if position.y > get_viewport_rect().size.y and not line_stopped:
+	if position.y > get_viewport_rect().size.y + 100 and not line_stopped:
 		line_stopped = true
 		ended.emit()
 
