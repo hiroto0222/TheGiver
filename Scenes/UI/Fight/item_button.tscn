@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://cq0lcmhwps7n2"]
+
+[ext_resource type="FontFile" uid="uid://wd1enlomam23" path="res://Assets/Fonts/alagard.ttf" id="1_up26o"]
+[ext_resource type="Script" path="res://Scenes/UI/Fight/item_button.gd" id="2_paj3s"]
+[ext_resource type="AudioStream" uid="uid://up14nh0w2jvo" path="res://Assets/Sounds/Menu/select_3.ogg" id="3_nkdcs"]
+[ext_resource type="AudioStream" uid="uid://dqapm03rycv5w" path="res://Assets/Sounds/Menu/select_2.ogg" id="4_uil4g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ulkk5"]
+content_margin_left = 40.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mxjdy"]
+content_margin_left = 40.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_npjxa"]
+content_margin_left = 40.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[node name="ItemButton" type="Button"]
+custom_minimum_size = Vector2(475, 65)
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_up26o")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_ulkk5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mxjdy")
+theme_override_styles/focus = SubResource("StyleBoxFlat_npjxa")
+text = "Act Choice"
+alignment = 0
+script = ExtResource("2_paj3s")
+focus_sound = ExtResource("3_nkdcs")
+pressed_sound = ExtResource("4_uil4g")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -20.0

@@ -26,7 +26,7 @@ func on_act_button_pressed() -> void:
 
 
 func on_item_button_pressed() -> void:
-	selected.emit("item")
+	selected.emit("items")
 
 
 func on_defend_button_pressed() -> void:

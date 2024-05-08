@@ -53,6 +53,7 @@ func on_key_spawn_timer_timeout() -> void:
 		key_input_instance = key_input_scene.instantiate() as FightApproachKeyInput
 		key_input_instance.key_letter = key_combos[key_combo_idx]
 		key_input_instance.speed = key_letter_speed
+		key_input_instance.missed.connect(on_key_input_missed)
 
 		key_combo_idx += 1
 		key_input_instance.destroyed.connect(on_key_input_instance_destroyed.bind(key_combo_idx))
@@ -75,6 +76,15 @@ func handle_successful_key_press() -> void:
 	tween.tween_property(player, "position", Vector2(640 - rand_x, 280 - rand_y), 0.1)
 	tween.tween_property(player, "position", Vector2(640, 280), 0.2)
 	success_cnt += 1
+
+
+func on_key_input_missed() -> void:
+	var tween := create_tween()
+	tween.tween_property(player, "position", Vector2(640 - 15, 280), 0.05)
+	tween.tween_property(player, "position", Vector2(640 + 15, 280), 0.05)
+	tween.tween_property(player, "position", Vector2(640 - 15, 280), 0.05)
+	tween.tween_property(player, "position", Vector2(640 + 15, 280), 0.05)
+	tween.tween_property(player, "position", Vector2(640, 280), 0.05)
 
 
 func on_key_input_instance_destroyed(key_index: int) -> void:

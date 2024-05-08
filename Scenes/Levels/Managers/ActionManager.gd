@@ -4,6 +4,7 @@ class_name ActionManager
 
 signal fight_selected
 signal act_selected
+signal items_selected
 
 # Game Objects
 @export var action_buttons_scene: PackedScene

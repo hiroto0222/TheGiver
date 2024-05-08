@@ -26,7 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://t7jllache8ae" path="res://Scenes/UI/Fight/player_info.tscn" id="15_uistj"]
 [ext_resource type="Texture2D" uid="uid://ct2xdd4yy0bpw" path="res://Assets/Sprites/Misc/lighting.png" id="18_ktrek"]
 [ext_resource type="Script" path="res://Scenes/Levels/Level1/item_manager.gd" id="21_ibdbu"]
-[ext_resource type="PackedScene" uid="uid://gl4awwhxyjus" path="res://Scenes/UI/Fight/item_buttons.tscn" id="22_2h76s"]
+[ext_resource type="PackedScene" uid="uid://cq0lcmhwps7n2" path="res://Scenes/UI/Fight/item_button.tscn" id="22_8aker"]
 [ext_resource type="AudioStream" uid="uid://bqo4038w4hhg6" path="res://Assets/Sounds/Themes/level_1_boss.wav" id="26_gbsc2"]
 
 [sub_resource type="Animation" id="Animation_pve0s"]
@@ -331,7 +331,7 @@ volumetric_fog_density = 0.4029
 
 [node name="Level1" type="Node2D"]
 
-[node name="LevelManager" type="Node" parent="." node_paths=PackedStringArray("enemy_body", "action_manager", "fight_manager", "attack_manager", "act_manager", "state_manager", "item_manager")]
+[node name="LevelManager" type="Node" parent="." node_paths=PackedStringArray("enemy_body", "action_manager", "fight_manager", "attack_manager", "act_manager", "state_manager")]
 script = ExtResource("1_6kdva")
 enemy_body = NodePath("../Human")
 action_manager = NodePath("../ActionManager")
@@ -339,7 +339,6 @@ fight_manager = NodePath("../FightManager")
 attack_manager = NodePath("../AttackManager")
 act_manager = NodePath("../ActManager")
 state_manager = NodePath("../StateManager")
-item_manager = NodePath("../ItemManager")
 
 [node name="StateManager" type="Node" parent="." node_paths=PackedStringArray("attack_manager", "act_manager")]
 script = ExtResource("2_kksd3")
@@ -352,91 +351,4 @@ action_buttons_scene = ExtResource("3_iheqm")
 level_manager = NodePath("../LevelManager")
 
 [node name="FightManager" type="Node" parent="." node_paths=PackedStringArray("dialog_background", "animation_player", "level_manager", "state_manager")]
-script = ExtResource("3_u5ubm")
-dialog_background = NodePath("../DialogBackground")
-slapping_hand_scene = ExtResource("4_faj2n")
-fight_approach_scene = ExtResource("5_o6xim")
-fight_scene = ExtResource("4_16ovy")
-animation_player = NodePath("../AnimationPlayer")
-level_manager = NodePath("../LevelManager")
-state_manager = NodePath("../StateManager")
-
-[node name="ActManager" type="Node" parent="." node_paths=PackedStringArray("level_manager", "state_manager")]
-script = ExtResource("3_cuacp")
-act_choices_per_phase = Array[Resource("res://Resources/ActChoices/ActsPerPhase.gd")]([ExtResource("5_lbuu2"), ExtResource("7_hayja"), ExtResource("8_xr8x0")])
-act_choice_buttons_scene = ExtResource("5_fh83f")
-level_manager = NodePath("../LevelManager")
-state_manager = NodePath("../StateManager")
-
-[node name="AttackManager" type="Node" parent="." node_paths=PackedStringArray("dialog_background", "animation_player", "level_manager")]
-script = ExtResource("4_f5y6i")
-dialog_background = NodePath("../DialogBackground")
-attack_sequence = Array[PackedScene]([ExtResource("7_kix4b"), ExtResource("8_4e0yc"), ExtResource("9_l4ioe"), ExtResource("14_saqwq")])
-battle_box_scene = ExtResource("10_qr5a0")
-battle_player_scene = ExtResource("11_irlci")
-animation_player = NodePath("../AnimationPlayer")
-level_manager = NodePath("../LevelManager")
-
-[node name="ItemManager" type="Node" parent="." node_paths=PackedStringArray("level_manager")]
-script = ExtResource("21_ibdbu")
-item_buttons_scene = ExtResource("22_2h76s")
-level_manager = NodePath("../LevelManager")
-
-[node name="Background" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(1280, 720)
-offset_right = 1280.0
-offset_bottom = 720.0
-mouse_filter = 2
-texture = ExtResource("1_5o1yw")
-expand_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="Background"]
-modulate = Color(1, 1, 1, 0.435294)
-custom_minimum_size = Vector2(1280, 720)
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("18_ktrek")
-expand_mode = 2
-
-[node name="Player" parent="." instance=ExtResource("2_exma6")]
-position = Vector2(200, 300)
-scale = Vector2(0.7, 0.7)
-
-[node name="Human" parent="." instance=ExtResource("3_greyo")]
-position = Vector2(57, -81)
-
-[node name="BattleArea" type="Node2D" parent="." groups=["battle_area_layer"]]
-y_sort_enabled = true
-
-[node name="Entities" type="Node2D" parent="." groups=["entities_layer"]]
-
-[node name="PlayerInfo" parent="." instance=ExtResource("15_uistj")]
-offset_right = 1280.0
-offset_bottom = 50.0
-
-[node name="DialogBackground" type="ColorRect" parent="."]
-offset_top = 560.0
-offset_right = 1280.0
-offset_bottom = 720.0
-color = Color(0, 0, 0, 1)
-
-[node name="IntroCover" type="ColorRect" parent="."]
-visible = false
-custom_minimum_size = Vector2(1280, 720)
-offset_right = 1280.0
-offset_bottom = 720.0
-color = Color(0, 0, 0, 1)
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("26_gbsc2")
-autoplay = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_lkf55")
-}
-autoplay = "no_intro"
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_8hpaa")
+script = ExtResource

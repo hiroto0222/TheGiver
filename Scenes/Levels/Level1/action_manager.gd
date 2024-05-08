@@ -22,6 +22,9 @@ func on_action_button_pressed(action_type: String) -> void:
 		"act":
 			action_buttons_instance.hide()
 			act_selected.emit()
+		"items":
+			action_buttons_instance.hide()
+			items_selected.emit()
 
 
 # when clean up is called, re-enable action buttons

@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name FightApproachKeyInput
 
 signal destroyed
+signal missed
 
 @export var key_letter: String
 
@@ -56,6 +57,8 @@ func miss() -> void:
 
 	PlayerState.decrease_health(2)
 	miss_audio_player.play()
+
+	missed.emit()
 
 	# shake anim
 	var tween := create_tween()

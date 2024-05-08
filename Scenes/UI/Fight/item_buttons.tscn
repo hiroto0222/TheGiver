@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://gl4awwhxyjus"]
+
+[ext_resource type="Script" path="res://Scenes/UI/Fight/item_buttons.gd" id="1_ynovr"]
+[ext_resource type="Resource" uid="uid://n6nu7eayrgad" path="res://Resources/Items/dad_bento.tres" id="2_y2v8k"]
+[ext_resource type="PackedScene" uid="uid://cq0lcmhwps7n2" path="res://Scenes/UI/Fight/item_button.tscn" id="3_ntay7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t6hdx"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="ItemButtons" type="CanvasLayer"]
+script = ExtResource("1_ynovr")
+items = Array[Resource("res://Resources/Items/Item.gd")]([ExtResource("2_y2v8k"), ExtResource("2_y2v8k"), ExtResource("2_y2v8k"), ExtResource("2_y2v8k")])
+item_button_scene = ExtResource("3_ntay7")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 160)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_t6hdx")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 160)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_override_constants/margin_left = 140
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 140
+theme_override_constants/margin_bottom = 10
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(2.08165e-12, 140)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/h_separation = 50
+theme_override_constants/v_separation = 10
+columns = 2

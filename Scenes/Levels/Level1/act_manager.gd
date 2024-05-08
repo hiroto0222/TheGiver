@@ -7,6 +7,21 @@ func _ready() -> void:
 	level_manager.clean_up.connect(on_clean_up)
 
 
+# check conditions with state manager for successful act
+func is_successful_act(act_selected: Act) -> bool:
+	match state_manager.phase:
+		# phase 1
+		0: return true
+		# phase 2
+		1:
+			# mask open and throw dust success
+			if state_manager.mask_open and act_selected.name == "Throw Dust":
+				level_manager.damage_enemy()
+				return true
+
+	return false
+
+
 func on_start_act_sequence() -> void:
 	act_choice_buttons_instance = act_choice_buttons_scene.instantiate() as ActChoiceButtons
 
@@ -23,12 +38,18 @@ func on_start_act_sequence() -> void:
 
 
 func on_act_choice_button_pressed(act_selected: Act, index: int) -> void:
-	# TODO: check conditions for successful act
 	# clean up buttons
 	act_choice_buttons_instance.cancel.disconnect(on_act_choice_buttons_cancel)
 	act_choice_buttons_instance.hide()
-	# select random dialogue
-	var dialogue: DialogicTimeline = act_selected.default_timeline.pick_random()
+
+	# check conditions for successful act
+	var is_success := is_successful_act(act_selected)
+	var dialogue: DialogicTimeline
+	if is_success:
+		dialogue = act_selected.success_timeline
+	else:
+		dialogue = act_selected.default_timeline.pick_random()
+
 	# emit dialogue
 	Dialogic.start_timeline(dialogue)
 	# once dialogue finished, start attack sequence

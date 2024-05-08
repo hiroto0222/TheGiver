@@ -24,7 +24,6 @@ func on_act_sequence_ended() -> void:
 
 
 func handle_phase_progress() -> void:
-	# initial act -> phase 1
 	if phase < 1 and act_count == 1:
 		print("initiated phase 1")
 		phase = 1
