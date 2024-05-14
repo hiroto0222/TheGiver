@@ -1,8 +1,5 @@
 [style name="battle_scene_style"]
 *Throw dust
-human: SOMETHING GOT IN MY EYES!
+human: [shake rate=20 level=20]SOMETHING GOT IN MY EYES![/shake]
 human: *itch itch
 His vision is blurred!
-Test your luck and go fight!
-You think to yourself...
-

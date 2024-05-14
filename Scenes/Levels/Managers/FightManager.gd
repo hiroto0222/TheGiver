@@ -6,7 +6,7 @@ signal fight_sequence_ended
 
 # Game Objects
 @export var fight_approach_scene: PackedScene
-@export var fight_scene: PackedScene
+@export var blood_suck_scene: PackedScene
 @export var animation_player: AnimationPlayer
 
 # Managers
@@ -15,7 +15,7 @@ signal fight_sequence_ended
 
 # Instances
 var fight_approach_scene_instance: FightApproach
-var fight_scene_instance: Fight
+var blood_suck_scene_instance: BloodSuck
 
 
 func on_start_fight_sequence() -> void:
@@ -31,8 +31,8 @@ func _get_configuration_warnings() -> PackedStringArray:
 	var warnings: Array[String] = []
 	if fight_approach_scene == null:
 		warnings.append("fight_approach_scene property is empty")
-	if fight_scene == null:
-		warnings.append("fight_scene property is empty")
+	if blood_suck_scene == null:
+		warnings.append("blood_suck_scene property is empty")
 	if animation_player == null:
 		warnings.append("animation_player property is empty")
 	if state_manager == null:

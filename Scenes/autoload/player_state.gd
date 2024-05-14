@@ -1,11 +1,18 @@
 extends Node
 
+# Player Health
 signal health_changed(health: int)
 signal max_health_changed(max_health: int)
 
 @export var max_health := 40
-
 var player_health := max_health
+
+# Player Blood
+signal blood_changed(blood: int)
+signal set_max_blood(max_blood: int)
+
+var max_player_blood := 100
+var player_blood := 0
 
 
 func update_max_health(amount: int) -> void:
@@ -20,5 +27,9 @@ func increase_health(amount: int) -> void:
 
 func decrease_health(amount: int) -> void:
 	player_health = maxi(player_health - amount, 0)
-	print("player health: ", player_health)
 	health_changed.emit(player_health)
+
+
+func increase_blood(amount: int) -> void:
+	player_blood = mini(player_blood + amount, max_player_blood)
+	blood_changed.emit(player_blood)

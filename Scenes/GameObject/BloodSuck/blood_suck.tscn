@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfkiaq3jitt1f"]
+
+[ext_resource type="Script" path="res://Scenes/GameObject/BloodSuck/blood_suck.gd" id="1_c2u0d"]
+[ext_resource type="Texture2D" uid="uid://d30acyprunb3j" path="res://Assets/Sprites/Misc/target.png" id="1_ehjjx"]
+[ext_resource type="PackedScene" uid="uid://wxhf0qc8tpvm" path="res://Scenes/GameObject/Fight/line_horizontal.tscn" id="2_3fs8e"]
+[ext_resource type="PackedScene" uid="uid://51dh0lajkn04" path="res://Scenes/GameObject/Fight/line_vertical.tscn" id="3_4ukgx"]
+
+[node name="BloodSuck" type="Node2D"]
+script = ExtResource("1_c2u0d")
+line_horizontal = ExtResource("2_3fs8e")
+line_vertical = ExtResource("3_4ukgx")
+
+[node name="Target" type="Sprite2D" parent="."]
+position = Vector2(640, 360)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_ehjjx")
+offset = Vector2(5, 5)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

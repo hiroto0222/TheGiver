@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://d2bdejb0kqvcy"]
+
+[ext_resource type="Script" path="res://Scenes/UI/Fight/player_blood_meter.gd" id="1_q05s1"]
+[ext_resource type="FontFile" uid="uid://wd1enlomam23" path="res://Assets/Fonts/alagard.ttf" id="2_wpn2p"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_i0k5k"]
+font = ExtResource("2_wpn2p")
+font_size = 35
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1mitu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_th1bg"]
+bg_color = Color(0.8, 0, 0, 1)
+
+[node name="PlayerBloodMeter" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_q05s1")
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(50, 50)
+offset_right = 40.0
+offset_bottom = 23.0
+text = "BM"
+label_settings = SubResource("LabelSettings_i0k5k")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BloodMeter" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(100, 2.08165e-12)
+offset_left = 60.0
+offset_top = 8.0
+offset_right = 160.0
+offset_bottom = 38.0
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_1mitu")
+theme_override_styles/fill = SubResource("StyleBoxFlat_th1bg")
+max_value = 20.0
+value = 10.0
+show_percentage = false
+
+[node name="BloodValue" type="Label" parent="."]
+custom_minimum_size = Vector2(150, 50)
+offset_left = 160.0
+offset_right = 310.0
+offset_bottom = 50.0
+text = "10/100"
+label_settings = SubResource("LabelSettings_i0k5k")
+horizontal_alignment = 1
+vertical_alignment = 1
