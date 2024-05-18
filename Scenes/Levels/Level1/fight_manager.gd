@@ -24,6 +24,7 @@ func on_start_fight_sequence() -> void:
 	fight_approach_scene_instance.fail.connect(on_fight_approach_scene_fail)
 
 	animation_player.play("enter_fight")
+	dialog_background.hide()
 	add_child(fight_approach_scene_instance)
 
 
@@ -33,7 +34,6 @@ func on_fight_approach_scene_fail() -> void:
 
 func on_fight_approach_scene_success() -> void:
 	fight_approach_scene_instance.queue_free()
-	dialog_background.hide()
 
 	blood_suck_scene_instance = blood_suck_scene.instantiate() as BloodSuck
 	blood_suck_scene_instance.current_phase = state_manager.phase

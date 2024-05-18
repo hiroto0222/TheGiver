@@ -57,7 +57,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0.5, 1),
 "transitions": PackedFloat32Array(0.4, 1),
 "update": 0,
-"values": [Vector2(640, 800), Vector2(640, 280)]
+"values": [Vector2(640, 800), Vector2(640, 360)]
 }
 
 [sub_resource type="Animation" id="Animation_w4gtp"]
@@ -97,7 +97,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(4, 1),
 "update": 0,
-"values": [Vector2(640, 280), Vector2(2.08165e-12, 650)]
+"values": [Vector2(640, 360), Vector2(-50, 650)]
 }
 
 [sub_resource type="Animation" id="Animation_vjggk"]
@@ -113,7 +113,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(0.6, 1),
 "update": 0,
-"values": [Vector2(640, 280), Vector2(1400, 280)]
+"values": [Vector2(640, 360), Vector2(1400, 360)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2s4ql"]
@@ -133,6 +133,7 @@ position = Vector2(640, 800)
 scale = Vector2(0.7, 0.7)
 
 [node name="Background" type="ColorRect" parent="."]
+visible = false
 custom_minimum_size = Vector2(1280, 160)
 offset_top = 560.0
 offset_right = 1280.0
@@ -153,6 +154,8 @@ pivot_offset = Vector2(2.08165e-12, 1)
 [node name="KeyInputLayer" type="Node2D" parent="." groups=["key_input_layer"]]
 
 [node name="KeyEnterArea" parent="." instance=ExtResource("2_nvmxp")]
+position = Vector2(640, 360)
+scale = Vector2(2.5, 2.5)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_22cer")

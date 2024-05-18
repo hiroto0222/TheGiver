@@ -9,8 +9,9 @@
 size = Vector2(45, 45)
 
 [node name="KeyInput" type="CharacterBody2D"]
+modulate = Color(1, 1, 1, 0.784314)
 position = Vector2(543, 640)
-scale = Vector2(1.1, 1.1)
+scale = Vector2(1.5, 1.5)
 script = ExtResource("1_jwosb")
 key_letter = "w"
 
@@ -26,3 +27,7 @@ stream = ExtResource("3_mhejb")
 [node name="Miss" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_ouk3a")
 volume_db = -15.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true

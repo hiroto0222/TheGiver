@@ -9,9 +9,13 @@ signal missed
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var success_audio_player: AudioStreamPlayer = $Success
 @onready var miss_audio_player: AudioStreamPlayer = $Miss
+@onready var timer: Timer = $Timer
 
+var is_check_middle := true
+var is_inside_key_enter_area := false
 var is_processed := false
 var speed := 250.0
+const y_pos := 360
 
 
 # map key letters to sprite paths
@@ -24,7 +28,9 @@ var sprite_paths := {
 
 
 func _ready() -> void:
-	position = Vector2(-50, 640)
+	timer.timeout.connect(on_timer_timeout)
+
+	position = Vector2(-50, y_pos)
 
 	if key_letter in sprite_paths:
 		var sprite_path: String = sprite_paths[key_letter]
@@ -33,11 +39,19 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	if is_inside_key_enter_area:
+		return
+
 	position.x += speed * delta
 
 	if position.x > 1280 + 50:
 		queue_free()
 		destroyed.emit()
+
+	if position.x >= 635 and position.x <= 645 and is_check_middle:
+		is_inside_key_enter_area = true
+		is_check_middle = false
+		timer.start()
 
 
 func success(pitch_scale: float) -> void:
@@ -67,3 +81,7 @@ func miss() -> void:
 	tween.tween_property(sprite_2d, "position:x", 7, 0.05)
 	tween.tween_property(sprite_2d, "position:x", -7, 0.05)
 	tween.tween_property(sprite_2d, "position:x", 0, 0.05)
+
+
+func on_timer_timeout() -> void:
+	is_inside_key_enter_area = false

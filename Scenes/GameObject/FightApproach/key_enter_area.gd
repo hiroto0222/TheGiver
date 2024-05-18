@@ -1,7 +1,6 @@
 extends Node2D
 class_name FightApproachKeyEnterArea
 
-
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var area_2d: Area2D = $Area2D
 
