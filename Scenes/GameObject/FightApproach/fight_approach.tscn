@@ -102,6 +102,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_vjggk"]
 resource_name = "success"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -109,8 +110,8 @@ tracks/0/path = NodePath("Player:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(0.6, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.5),
+"transitions": PackedFloat32Array(0.6, 2.14355, 1),
 "update": 0,
 "values": [Vector2(640, 360), Vector2(640, 360), Vector2(1400, 360)]
 }
@@ -166,5 +167,5 @@ libraries = {
 autoplay = "enter"
 
 [node name="KeyPauseTimer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.15
 one_shot = true

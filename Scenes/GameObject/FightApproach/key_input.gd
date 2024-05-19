@@ -78,7 +78,7 @@ func success() -> void:
 	is_success = true
 
 	# slow down
-	speed /= 3
+	speed = [-0.2, -0.5, 0.5, 0.2].pick_random() * speed
 	y_speed = [-1, -0.5, 0.5, 1].pick_random() * speed
 
 	sprite_2d.modulate = Color("#00b23b")
@@ -89,8 +89,8 @@ func success() -> void:
 
 	# bounce anim
 	var bounceTween := create_tween()
-	bounceTween.tween_property(sprite_2d, "scale", Vector2(1.3, 1.3), 0.1)
-	bounceTween.tween_property(sprite_2d, "scale", Vector2(1, 1), 0.1)
+	bounceTween.tween_property(sprite_2d, "scale", Vector2(1.5, 1.5), 0.1)
+	bounceTween.tween_property(sprite_2d, "scale", Vector2(0, 0), 0.5)
 
 	# fade anim
 	var fadeTween := create_tween()
