@@ -17,8 +17,6 @@ var finished := false
 
 
 func _ready() -> void:
-	print("slapping_hand target_pos_x: ", target_pos_x)
-	print("slapping_hand target_pos_y: ", target_pos_y)
 	target_pos = Vector2(target_pos_x, target_pos_y)
 	timer.timeout.connect(on_timer_timeout)
 	hand_sprite.position = init_pos

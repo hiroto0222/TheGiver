@@ -1,9 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://cgjxsj2p8ktvh"]
+[gd_scene load_steps=19 format=3 uid="uid://cgjxsj2p8ktvh"]
 
 [ext_resource type="Script" path="res://Scenes/GameObject/FightApproach/key_input.gd" id="1_jwosb"]
+[ext_resource type="AudioStream" uid="uid://23sqkmlgkst" path="res://Assets/Sounds/Effects/FightApproach/key_success_1.wav" id="2_0iocj"]
 [ext_resource type="Texture2D" uid="uid://3631qmsrn3mx" path="res://Assets/Sprites/KeyInputs/a.png" id="2_4ixms"]
+[ext_resource type="AudioStream" uid="uid://c3nhfxjgixu1m" path="res://Assets/Sounds/Effects/FightApproach/key_success_2.wav" id="3_c3mu0"]
 [ext_resource type="AudioStream" uid="uid://bo1udc73l08p8" path="res://Assets/Sounds/Effects/hit.wav" id="3_mhejb"]
 [ext_resource type="AudioStream" uid="uid://d103cp8a8r8cq" path="res://Assets/Sounds/Effects/damage.ogg" id="3_ouk3a"]
+[ext_resource type="AudioStream" uid="uid://bdv4vpc4lhmo3" path="res://Assets/Sounds/Effects/FightApproach/key_success_3.wav" id="4_ik3mr"]
+[ext_resource type="AudioStream" uid="uid://chptm55utmfvb" path="res://Assets/Sounds/Effects/FightApproach/key_success_4.wav" id="5_ol2ef"]
+[ext_resource type="AudioStream" uid="uid://dncl3c6gyx02b" path="res://Assets/Sounds/Effects/FightApproach/key_success_5.wav" id="6_62qhs"]
+[ext_resource type="AudioStream" uid="uid://tmw58mob73sf" path="res://Assets/Sounds/Effects/FightApproach/key_success_6.wav" id="7_8am1i"]
+[ext_resource type="AudioStream" uid="uid://ddiypguf2brg6" path="res://Assets/Sounds/Effects/FightApproach/key_success_7.wav" id="8_2isa3"]
+[ext_resource type="AudioStream" uid="uid://byysrd2tisunp" path="res://Assets/Sounds/Effects/FightApproach/key_success_8.wav" id="9_643lr"]
+[ext_resource type="AudioStream" uid="uid://dhx3ginownjpi" path="res://Assets/Sounds/Effects/FightApproach/key_success_9.wav" id="10_rk1lv"]
+[ext_resource type="AudioStream" uid="uid://dqgj75s3oiehh" path="res://Assets/Sounds/Effects/FightApproach/key_success_10.wav" id="11_smijo"]
+[ext_resource type="AudioStream" uid="uid://cii6ygfqn0jm6" path="res://Assets/Sounds/Effects/FightApproach/key_success_11.wav" id="12_1cmsi"]
+[ext_resource type="AudioStream" uid="uid://ci6auerb2h0fg" path="res://Assets/Sounds/Effects/FightApproach/key_success_12.wav" id="13_xh1w8"]
+[ext_resource type="AudioStream" uid="uid://dae2bett0t4s4" path="res://Assets/Sounds/Effects/FightApproach/key_success_13.wav" id="14_hux5h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6miah"]
 size = Vector2(45, 45)
@@ -11,9 +24,10 @@ size = Vector2(45, 45)
 [node name="KeyInput" type="CharacterBody2D"]
 modulate = Color(1, 1, 1, 0.784314)
 position = Vector2(543, 640)
-scale = Vector2(1.5, 1.5)
+scale = Vector2(1.75, 1.75)
 script = ExtResource("1_jwosb")
 key_letter = "w"
+key_success_sounds = Array[AudioStreamWAV]([ExtResource("2_0iocj"), ExtResource("3_c3mu0"), ExtResource("4_ik3mr"), ExtResource("5_ol2ef"), ExtResource("6_62qhs"), ExtResource("7_8am1i"), ExtResource("8_2isa3"), ExtResource("9_643lr"), ExtResource("10_rk1lv"), ExtResource("11_smijo"), ExtResource("12_1cmsi"), ExtResource("13_xh1w8"), ExtResource("14_hux5h")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_4ixms")
@@ -22,12 +36,16 @@ texture = ExtResource("2_4ixms")
 shape = SubResource("RectangleShape2D_6miah")
 
 [node name="Success" type="AudioStreamPlayer" parent="."]
+volume_db = -2.0
+
+[node name="Hit" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_mhejb")
+volume_db = -10.0
 
 [node name="Miss" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_ouk3a")
 volume_db = -15.0
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.1
+[node name="DestroyTimer" type="Timer" parent="."]
+wait_time = 0.5
 one_shot = true

@@ -20,6 +20,7 @@ func clean_up() -> void:
 
 func on_start_fight_sequence() -> void:
 	fight_approach_scene_instance = fight_approach_scene.instantiate() as FightApproach
+	fight_approach_scene_instance.current_phase = state_manager.phase
 	fight_approach_scene_instance.success.connect(on_fight_approach_scene_success)
 	fight_approach_scene_instance.fail.connect(on_fight_approach_scene_fail)
 

@@ -1,20 +1,28 @@
 extends CharacterBody2D
 class_name FightApproachKeyInput
 
+signal is_middle
 signal destroyed
 signal missed
 
 @export var key_letter: String
+@export var key_success_sounds: Array[AudioStreamWAV]
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
-@onready var success_audio_player: AudioStreamPlayer = $Success
-@onready var miss_audio_player: AudioStreamPlayer = $Miss
-@onready var timer: Timer = $Timer
 
+@onready var success_audio_player: AudioStreamPlayer = $Success
+@onready var hit_audio_player: AudioStreamPlayer = $Hit
+@onready var miss_audio_player: AudioStreamPlayer = $Miss
+
+@onready var destroy_timer: Timer = $DestroyTimer
+
+var key_idx := 0
+var is_success := false
 var is_check_middle := true
-var is_inside_key_enter_area := false
+var is_pause_middle := false
 var is_processed := false
 var speed := 250.0
+var y_speed := -200
 const y_pos := 360
 
 
@@ -28,7 +36,9 @@ var sprite_paths := {
 
 
 func _ready() -> void:
-	timer.timeout.connect(on_timer_timeout)
+	add_to_group("key_input_layer")
+
+	destroy_timer.timeout.connect(on_destroy_timer_timeout)
 
 	position = Vector2(-50, y_pos)
 
@@ -39,31 +49,59 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if is_inside_key_enter_area:
+	if is_pause_middle:
 		return
 
 	position.x += speed * delta
+	if is_success:
+		position.y += y_speed * delta
 
 	if position.x > 1280 + 50:
 		queue_free()
 		destroyed.emit()
 
 	if position.x >= 635 and position.x <= 645 and is_check_middle:
-		is_inside_key_enter_area = true
+		position.x = 640
+		is_middle.emit()
 		is_check_middle = false
-		timer.start()
 
 
-func success(pitch_scale: float) -> void:
+func key_pause_middle() -> void:
+	is_pause_middle = true
+
+
+func key_unpause_middle() -> void:
+	is_pause_middle = false
+
+
+func success() -> void:
+	is_success = true
+
+	# slow down
+	speed /= 3
+	y_speed = [-1, -0.5, 0.5, 1].pick_random() * speed
+
 	sprite_2d.modulate = Color("#00b23b")
 
-	success_audio_player.pitch_scale = pitch_scale
+	success_audio_player.stream = key_success_sounds[mini(key_idx, len(key_success_sounds) - 1)]
 	success_audio_player.play()
+	hit_audio_player.play()
 
 	# bounce anim
-	var tween := create_tween()
-	tween.tween_property(sprite_2d, "scale", Vector2(1.3, 1.3), 0.1)
-	tween.tween_property(sprite_2d, "scale", Vector2(1, 1), 0.1)
+	var bounceTween := create_tween()
+	bounceTween.tween_property(sprite_2d, "scale", Vector2(1.3, 1.3), 0.1)
+	bounceTween.tween_property(sprite_2d, "scale", Vector2(1, 1), 0.1)
+
+	# fade anim
+	var fadeTween := create_tween()
+	fadeTween.tween_property(sprite_2d, "modulate", Color(1, 1, 1, 0), 0.5)
+
+	destroy_timer.start()
+
+
+func on_destroy_timer_timeout() -> void:
+	queue_free()
+	destroyed.emit()
 
 
 func miss() -> void:
@@ -81,7 +119,3 @@ func miss() -> void:
 	tween.tween_property(sprite_2d, "position:x", 7, 0.05)
 	tween.tween_property(sprite_2d, "position:x", -7, 0.05)
 	tween.tween_property(sprite_2d, "position:x", 0, 0.05)
-
-
-func on_timer_timeout() -> void:
-	is_inside_key_enter_area = false

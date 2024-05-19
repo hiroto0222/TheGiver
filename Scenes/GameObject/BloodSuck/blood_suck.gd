@@ -6,6 +6,9 @@ signal ended(success: bool, x_pos: float, y_pos: float)
 const MAX_PHASES = 2
 const TARGET_MARGIN = 100
 
+# stage phase
+var current_phase: int = 1
+
 @export var line_horizontal: PackedScene
 @export var line_vertical: PackedScene
 
@@ -13,7 +16,6 @@ const TARGET_MARGIN = 100
 @onready var audio: AudioStreamPlayer = $AudioStreamPlayer
 
 var max_sucks: int = 5
-var current_phase: int = 1
 var curr_successful_sucks: int = 0
 
 var curr_line: ColorRect
