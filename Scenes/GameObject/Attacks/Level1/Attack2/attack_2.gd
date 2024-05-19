@@ -1,6 +1,6 @@
 extends Attack
 
-const MAX_ATTACK_DURATION = 10
+const MAX_ATTACK_DURATION = 7
 const MIN_SPAWN_TIME := 0.1
 const MAX_SPAWN_TIME := 0.3
 

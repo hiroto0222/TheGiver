@@ -4,6 +4,7 @@ extends LevelManager
 signal intro_finished
 
 @export var enemy_body: CharacterBody2D
+var death_transition_scene: PackedScene = preload("res://Scenes/UI/GameOver/death_transition.tscn")
 
 
 func _ready() -> void:
@@ -26,6 +27,9 @@ func _ready() -> void:
 
 	# handle state transitions
 	state_manager.open_mask.connect(on_open_mask)
+
+	# handle death
+	PlayerState.death.connect(on_player_death)
 
 
 func on_fight_selected() -> void:
@@ -78,3 +82,10 @@ func damage_enemy() -> void:
 # called once intro sequence has finished
 func handle_intro_finished() -> void:
 	intro_finished.emit()
+
+
+func on_player_death() -> void:
+	get_tree().paused = true
+	PlayerState.set_last_scene(get_tree().current_scene.scene_file_path)
+	var death_transition_scene_instance := death_transition_scene.instantiate()
+	add_child(death_transition_scene_instance)

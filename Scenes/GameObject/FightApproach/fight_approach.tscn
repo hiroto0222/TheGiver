@@ -167,5 +167,5 @@ libraries = {
 autoplay = "enter"
 
 [node name="KeyPauseTimer" type="Timer" parent="."]
-wait_time = 0.15
+wait_time = 0.2
 one_shot = true

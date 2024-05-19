@@ -3,16 +3,18 @@ extends Node
 # Player Health
 signal health_changed(health: int)
 signal max_health_changed(max_health: int)
-
-@export var max_health := 40
+signal death
+@export var max_health := 20
 var player_health := max_health
 
 # Player Blood
 signal blood_changed(blood: int)
 signal set_max_blood(max_blood: int)
-
 var max_player_blood := 100
 var player_blood := 0
+
+# Last Death Scene
+var last_scene: String
 
 
 func update_max_health(amount: int) -> void:
@@ -28,8 +30,19 @@ func increase_health(amount: int) -> void:
 func decrease_health(amount: int) -> void:
 	player_health = maxi(player_health - amount, 0)
 	health_changed.emit(player_health)
+	if player_health == 0:
+		death.emit()
+
+
+func regenerate() -> void:
+	player_health = max_health
+	health_changed.emit(player_health)
 
 
 func increase_blood(amount: int) -> void:
 	player_blood = mini(player_blood + amount, max_player_blood)
 	blood_changed.emit(player_blood)
+
+
+func set_last_scene(scene_path: String) -> void:
+	last_scene = scene_path

@@ -1,5 +1,6 @@
-[gd_scene load_steps=38 format=3 uid="uid://cf3c6uac67ave"]
+[gd_scene load_steps=39 format=3 uid="uid://cf3c6uac67ave"]
 
+[ext_resource type="Script" path="res://Scenes/Levels/Level1/level_1.gd" id="1_04hv2"]
 [ext_resource type="Texture2D" uid="uid://b16fk7bd4hftb" path="res://Assets/Sprites/Backgrounds/level1.png" id="1_5o1yw"]
 [ext_resource type="Script" path="res://Scenes/Levels/Level1/level_manager.gd" id="1_6kdva"]
 [ext_resource type="PackedScene" uid="uid://cgj1c856i77vv" path="res://Scenes/GameObject/Player/player.tscn" id="2_exma6"]
@@ -330,6 +331,7 @@ fog_height = -35.43
 volumetric_fog_density = 0.4029
 
 [node name="Level1" type="Node2D"]
+script = ExtResource("1_04hv2")
 
 [node name="LevelManager" type="Node" parent="." node_paths=PackedStringArray("enemy_body", "action_manager", "fight_manager", "attack_manager", "act_manager", "state_manager", "item_manager")]
 script = ExtResource("1_6kdva")
@@ -436,7 +438,6 @@ autoplay = true
 libraries = {
 "": SubResource("AnimationLibrary_lkf55")
 }
-autoplay = "no_intro"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_8hpaa")

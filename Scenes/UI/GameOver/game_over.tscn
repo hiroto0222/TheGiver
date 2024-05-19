@@ -1,0 +1,167 @@
+[gd_scene load_steps=18 format=3 uid="uid://brufyv4wdykr5"]
+
+[ext_resource type="Script" path="res://Scenes/UI/GameOver/game_over.gd" id="1_73k66"]
+[ext_resource type="Texture2D" uid="uid://ccwlasi4f4qef" path="res://Assets/Sprites/Menu/GameOver/gameover.png" id="1_h7o5t"]
+[ext_resource type="AudioStream" uid="uid://ct4crv52rerci" path="res://Assets/Sounds/Themes/game_over.wav" id="2_4nc12"]
+[ext_resource type="FontFile" uid="uid://wd1enlomam23" path="res://Assets/Fonts/alagard.ttf" id="3_1rlg8"]
+[ext_resource type="Script" path="res://Scenes/Main/button_sound.gd" id="4_fot6q"]
+[ext_resource type="AudioStream" uid="uid://sfctyba5bx8x" path="res://Assets/Sounds/Menu/select.ogg" id="5_dg68t"]
+[ext_resource type="AudioStream" uid="uid://cpwt832pujsjj" path="res://Assets/Sounds/Menu/tap.ogg" id="6_8lngh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_03er6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rowtf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tlswy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p37u2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iyalv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6jyu8"]
+
+[sub_resource type="Animation" id="Animation_cx5ep"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasModulate:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-5.0]
+}
+
+[sub_resource type="Animation" id="Animation_n5g70"]
+resource_name = "fade_in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasModulate:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_rqtcp"]
+resource_name = "fade_out"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasModulate:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-5.0, -80.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k6xie"]
+_data = {
+"RESET": SubResource("Animation_cx5ep"),
+"fade_in": SubResource("Animation_n5g70"),
+"fade_out": SubResource("Animation_rqtcp")
+}
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_73k66")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_h7o5t")
+expand_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(1280, 2.08165e-12)
+layout_mode = 0
+offset_top = 600.0
+offset_right = 1280.0
+offset_bottom = 646.0
+mouse_filter = 2
+alignment = 1
+
+[node name="RetryButton" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_pressed_color = Color(0.8, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.8, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_1rlg8")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_03er6")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_rowtf")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tlswy")
+text = "RETRY?"
+script = ExtResource("4_fot6q")
+focus_sound = ExtResource("5_dg68t")
+pressed_sound = ExtResource("6_8lngh")
+
+[node name="GiveUpButton" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_pressed_color = Color(0.8, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.8, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_1rlg8")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_p37u2")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_iyalv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6jyu8")
+text = "Give Up"
+script = ExtResource("4_fot6q")
+focus_sound = ExtResource("5_dg68t")
+pressed_sound = ExtResource("6_8lngh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_k6xie")
+}
+autoplay = "fade_in"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_4nc12")
+volume_db = -5.0
+autoplay = true
