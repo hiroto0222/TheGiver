@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cf3c6uac67ave"]
+[gd_scene load_steps=41 format=3 uid="uid://cf3c6uac67ave"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/Level1/level_1.gd" id="1_04hv2"]
 [ext_resource type="Texture2D" uid="uid://b16fk7bd4hftb" path="res://Assets/Sprites/Backgrounds/level1.png" id="1_5o1yw"]
@@ -28,7 +28,8 @@
 [ext_resource type="Texture2D" uid="uid://ct2xdd4yy0bpw" path="res://Assets/Sprites/Misc/lighting.png" id="18_ktrek"]
 [ext_resource type="Script" path="res://Scenes/Levels/Level1/item_manager.gd" id="21_ibdbu"]
 [ext_resource type="PackedScene" uid="uid://gl4awwhxyjus" path="res://Scenes/UI/Fight/item_buttons.tscn" id="22_2h76s"]
-[ext_resource type="AudioStream" uid="uid://bqo4038w4hhg6" path="res://Assets/Sounds/Themes/level_1_boss.wav" id="26_gbsc2"]
+[ext_resource type="AudioStream" uid="uid://btm42w22l7wwp" path="res://Assets/Sounds/Themes/stage_4.wav" id="29_d04ku"]
+[ext_resource type="Shader" path="res://Scenes/UI/Misc/chromatic_abberation_vignette.gdshader" id="30_h8kl4"]
 
 [sub_resource type="Animation" id="Animation_pve0s"]
 length = 0.001
@@ -311,24 +312,35 @@ _data = {
 "no_intro": SubResource("Animation_bf7it")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t52qd"]
+shader = ExtResource("30_h8kl4")
+shader_parameter/r_displacement = Vector2(3, 0)
+shader_parameter/g_displacement = Vector2(0, 0)
+shader_parameter/b_displacement = Vector2(-3, 0)
+shader_parameter/height = 0.7
+shader_parameter/width = 0.5
+shader_parameter/fade = 0.7
+
 [sub_resource type="Environment" id="Environment_8hpaa"]
 background_mode = 3
 tonemap_mode = 1
-glow_levels/1 = 1.0
-glow_levels/2 = 1.0
+glow_levels/1 = 3.68
 glow_levels/3 = 0.0
 glow_levels/5 = 0.0
-glow_levels/7 = 1.0
 glow_normalized = true
-glow_intensity = 0.5
-glow_blend_mode = 1
-glow_hdr_threshold = 0.1
-fog_light_energy = 1.22
-fog_sun_scatter = 0.12
-fog_density = 0.256
+glow_intensity = 5.11
+glow_bloom = 0.07
+glow_blend_mode = 3
+glow_hdr_threshold = 0.2
+glow_hdr_scale = 2.06
+glow_hdr_luminance_cap = 33.7
+fog_light_energy = 4.42
+fog_sun_scatter = 8.42
+fog_density = 0.283
 fog_sky_affect = 0.49
 fog_height = -35.43
-volumetric_fog_density = 0.4029
+fog_height_density = 6.5329
+volumetric_fog_density = 0.4375
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_04hv2")
@@ -392,6 +404,13 @@ mouse_filter = 2
 texture = ExtResource("1_5o1yw")
 expand_mode = 2
 
+[node name="ColorRect" type="ColorRect" parent="Background"]
+modulate = Color(0.137255, 0.231373, 0.501961, 0.764706)
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="TextureRect" type="TextureRect" parent="Background"]
 modulate = Color(1, 1, 1, 0.435294)
 custom_minimum_size = Vector2(1280, 720)
@@ -414,8 +433,6 @@ y_sort_enabled = true
 [node name="Entities" type="Node2D" parent="." groups=["entities_layer"]]
 
 [node name="PlayerInfo" parent="." instance=ExtResource("15_uistj")]
-offset_right = 1280.0
-offset_bottom = 50.0
 
 [node name="DialogBackground" type="ColorRect" parent="."]
 offset_top = 560.0
@@ -431,13 +448,22 @@ offset_bottom = 720.0
 color = Color(0, 0, 0, 1)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("26_gbsc2")
+stream = ExtResource("29_d04ku")
 autoplay = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_lkf55")
 }
+
+[node name="ChromaticAbberation" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="ChromaticAbberation"]
+material = SubResource("ShaderMaterial_t52qd")
+custom_minimum_size = Vector2(1280, 720)
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_8hpaa")

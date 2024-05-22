@@ -1,41 +1,25 @@
-[gd_scene load_steps=11 format=3 uid="uid://ctive2mvgoy4c"]
+[gd_scene load_steps=11 format=3 uid="uid://dr0ovfcxckfsr"]
 
-[ext_resource type="Shader" path="res://Scenes/UI/Misc/transition.gdshader" id="1_ni56v"]
-[ext_resource type="Texture2D" uid="uid://ba23c712t744b" path="res://Assets/Sprites/Characters/Mosquito/Damage/damage_1.png" id="2_1w51n"]
-[ext_resource type="Texture2D" uid="uid://c2v1xa4i5cksr" path="res://Assets/Sprites/Characters/Mosquito/Damage/damage_2.png" id="3_563w7"]
-[ext_resource type="AudioStream" uid="uid://cj4hspftwmn3y" path="res://Assets/Sounds/Effects/death.ogg" id="4_v7six"]
+[ext_resource type="Shader" path="res://Scenes/UI/Misc/transition.gdshader" id="1_1tgyp"]
+[ext_resource type="Texture2D" uid="uid://ba23c712t744b" path="res://Assets/Sprites/Characters/Mosquito/Damage/damage_1.png" id="1_khu78"]
+[ext_resource type="Script" path="res://Scenes/UI/GameOver/game_over_transition.gd" id="1_s5wad"]
+[ext_resource type="Texture2D" uid="uid://c2v1xa4i5cksr" path="res://Assets/Sprites/Characters/Mosquito/Damage/damage_2.png" id="2_5i8qx"]
+[ext_resource type="AudioStream" uid="uid://cj4hspftwmn3y" path="res://Assets/Sounds/Effects/death.ogg" id="3_47cje"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dy3sa"]
-shader = ExtResource("1_ni56v")
-shader_parameter/circle_size = 0.305
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gvobp"]
+shader = ExtResource("1_1tgyp")
+shader_parameter/circle_size = 0.0
 shader_parameter/screen_width = 1280.0
 shader_parameter/screen_height = 720.0
 
-[sub_resource type="GDScript" id="GDScript_rnm7n"]
-script/source = "extends ColorRect
-
-
-@onready var anim: AnimationPlayer = $AnimationPlayer
-var game_over: PackedScene = preload(\"res://Scenes/UI/GameOver/game_over.tscn\")
-
-
-func _ready() -> void:
-	anim.animation_finished.connect(on_anim_finished)
-	anim.play(\"transition_to_death\")
-
-
-func on_anim_finished(anim_name: String) -> void:
-	get_tree().change_scene_to_packed(game_over)
-"
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_esta1"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_5wc17"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_1w51n")
+"texture": ExtResource("1_khu78")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_563w7")
+"texture": ExtResource("2_5i8qx")
 }],
 "loop": false,
 "name": &"damage",
@@ -189,23 +173,25 @@ _data = {
 "transition_to_death": SubResource("Animation_lgnuv")
 }
 
-[node name="DeathTransition" type="ColorRect"]
+[node name="GameOverTransition" type="CanvasLayer"]
 process_mode = 3
-top_level = true
+layer = 2
+script = ExtResource("1_s5wad")
+
+[node name="ColorRect" type="ColorRect" parent="."]
 z_index = 1000
-material = SubResource("ShaderMaterial_dy3sa")
+z_as_relative = false
+material = SubResource("ShaderMaterial_gvobp")
 custom_minimum_size = Vector2(1280, 720)
 offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0, 0, 0, 1)
-script = SubResource("GDScript_rnm7n")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="."]
 visible = false
 z_index = 998
 z_as_relative = false
 custom_minimum_size = Vector2(1280, 720)
-layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0.270588, 0.270588, 0.270588, 0.960784)
@@ -217,7 +203,7 @@ z_index = 999
 z_as_relative = false
 position = Vector2(640, 361)
 scale = Vector2(0.08, 0.08)
-sprite_frames = SubResource("SpriteFrames_esta1")
+sprite_frames = SubResource("SpriteFrames_5wc17")
 animation = &"damage"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -226,5 +212,5 @@ libraries = {
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_v7six")
+stream = ExtResource("3_47cje")
 volume_db = -20.0

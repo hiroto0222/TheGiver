@@ -14,7 +14,6 @@ func _ready() -> void:
 
 func on_retry_button_pressed() -> void:
 	anim.animation_finished.connect(on_animation_finished)
-	PlayerState.regenerate()
 	anim.play("fade_out")
 
 

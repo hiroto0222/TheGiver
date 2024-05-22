@@ -4,7 +4,7 @@ extends LevelManager
 signal intro_finished
 
 @export var enemy_body: CharacterBody2D
-var death_transition_scene: PackedScene = preload("res://Scenes/UI/GameOver/death_transition.tscn")
+var game_over_transition_scene: PackedScene = preload("res://Scenes/UI/GameOver/game_over_transition.tscn")
 
 
 func _ready() -> void:
@@ -87,5 +87,5 @@ func handle_intro_finished() -> void:
 func on_player_death() -> void:
 	get_tree().paused = true
 	PlayerState.set_last_scene(get_tree().current_scene.scene_file_path)
-	var death_transition_scene_instance := death_transition_scene.instantiate()
-	add_child(death_transition_scene_instance)
+	var game_over_transition_scene_instance := game_over_transition_scene.instantiate()
+	add_child(game_over_transition_scene_instance)

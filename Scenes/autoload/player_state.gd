@@ -34,11 +34,6 @@ func decrease_health(amount: int) -> void:
 		death.emit()
 
 
-func regenerate() -> void:
-	player_health = max_health
-	health_changed.emit(player_health)
-
-
 func increase_blood(amount: int) -> void:
 	player_blood = mini(player_blood + amount, max_player_blood)
 	blood_changed.emit(player_blood)
@@ -46,3 +41,10 @@ func increase_blood(amount: int) -> void:
 
 func set_last_scene(scene_path: String) -> void:
 	last_scene = scene_path
+
+
+func reset() -> void:
+	player_health = max_health
+	health_changed.emit(player_health)
+	player_blood = 0
+	blood_changed.emit(player_blood)

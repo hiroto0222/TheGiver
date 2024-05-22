@@ -21,6 +21,10 @@ func check_correct_key_press(pressed_key: String) -> bool:
 	if pressed_key == curr_key_input.key_letter:
 		curr_key_input.success()
 		success_particles.emitting = true
+		# bounce anim
+		var bounceTween := create_tween()
+		bounceTween.tween_property(sprite_2d, "scale", Vector2(1.3, 1.3), 0.05)
+		bounceTween.tween_property(sprite_2d, "scale", Vector2(1, 1), 0.1)
 		return true
 	else:
 		curr_key_input.miss()
@@ -31,6 +35,7 @@ func on_body_entered(other_body: Node2D) -> void:
 	sprite_2d.modulate = Color("#00b23b") # change to color green
 	if other_body is FightApproachKeyInput:
 		curr_key_input = other_body
+		curr_key_input.emit_pause_middle()
 
 
 func on_body_exited(other_body: Node2D) -> void:

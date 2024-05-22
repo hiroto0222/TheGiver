@@ -16,6 +16,14 @@ signal missed
 
 @onready var destroy_timer: Timer = $DestroyTimer
 
+# dist key travels is 690 units
+const INIT_POSITIONS := {
+	"w": Vector2(640, -330),
+	"a": Vector2(-50, 360),
+	"s": Vector2(640, 1050),
+	"d": Vector2(1280 + 50, 360),
+}
+
 var key_idx := 0
 var is_success := false
 var is_check_middle := true
@@ -23,7 +31,7 @@ var is_pause_middle := false
 var is_processed := false
 var speed := 250.0
 var y_speed := -200
-const y_pos := 360
+var init_pos: Vector2
 
 
 # map key letters to sprite paths
@@ -40,9 +48,8 @@ func _ready() -> void:
 
 	destroy_timer.timeout.connect(on_destroy_timer_timeout)
 
-	position = Vector2(-50, y_pos)
-
 	if key_letter in sprite_paths:
+		position = INIT_POSITIONS.get(key_letter)
 		var sprite_path: String = sprite_paths[key_letter]
 		var texture := load(sprite_path)
 		sprite_2d.texture = texture
@@ -52,18 +59,20 @@ func _process(delta: float) -> void:
 	if is_pause_middle:
 		return
 
-	position.x += speed * delta
 	if is_success:
+		position.x += speed * delta
 		position.y += y_speed * delta
+		return
 
-	if position.x > 1280 + 50:
-		queue_free()
-		destroyed.emit()
-
-	if position.x >= 635 and position.x <= 645 and is_check_middle:
-		position.x = 640
-		is_middle.emit()
-		is_check_middle = false
+	match key_letter:
+		"w":
+			handle_top_to_bottom(delta)
+		"a":
+			handle_left_to_right(delta)
+		"s":
+			handle_bottom_to_top(delta)
+		"d":
+			handle_right_to_left(delta)
 
 
 func key_pause_middle() -> void:
@@ -99,11 +108,6 @@ func success() -> void:
 	destroy_timer.start()
 
 
-func on_destroy_timer_timeout() -> void:
-	queue_free()
-	destroyed.emit()
-
-
 func miss() -> void:
 	sprite_2d.modulate = Color("#cc0000")
 
@@ -119,3 +123,66 @@ func miss() -> void:
 	tween.tween_property(sprite_2d, "position:x", 7, 0.05)
 	tween.tween_property(sprite_2d, "position:x", -7, 0.05)
 	tween.tween_property(sprite_2d, "position:x", 0, 0.05)
+
+	# fade anim
+	var fadeTween := create_tween()
+	fadeTween.tween_property(sprite_2d, "modulate", Color(1, 1, 1, 0), 0.2)
+
+
+func on_destroy_timer_timeout() -> void:
+	queue_free()
+	destroyed.emit()
+
+
+func emit_pause_middle() -> void:
+	position = Vector2(640, 360)
+	is_middle.emit()
+	#is_check_middle = false
+
+
+func handle_top_to_bottom(delta: float) -> void:
+	position.y += speed * delta
+	if position.y > 720 + 330:
+		queue_free()
+		destroyed.emit()
+
+	#if position.y >= 355 and position.y <= 365 and is_check_middle:
+		#position.y = 360
+		#is_middle.emit()
+		#is_check_middle = false
+
+
+func handle_left_to_right(delta: float) -> void:
+	position.x += speed * delta
+	if position.x > 1280 + 50:
+		queue_free()
+		destroyed.emit()
+
+	#if position.x >= 635 and position.x <= 645 and is_check_middle:
+		#position.x = 640
+		#is_middle.emit()
+		#is_check_middle = false
+
+
+func handle_bottom_to_top(delta: float) -> void:
+	position.y -= speed * delta
+	if position.y < -330:
+		queue_free()
+		destroyed.emit()
+
+	#if position.y >= 355 and position.y <= 365 and is_check_middle:
+		#position.y = 360
+		#is_middle.emit()
+		#is_check_middle = false
+
+
+func handle_right_to_left(delta: float) -> void:
+	position.x -= speed * delta
+	if position.x < -50:
+		queue_free()
+		destroyed.emit()
+
+	#if position.x >= 635 and position.x <= 645 and is_check_middle:
+		#position.x = 640
+		#is_middle.emit()
+		#is_check_middle = false

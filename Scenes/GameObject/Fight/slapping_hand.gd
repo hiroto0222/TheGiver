@@ -10,7 +10,7 @@ var target_pos_y: float = 360
 var speed := 3500
 var target_pos: Vector2
 
-var init_pos := Vector2(1600, 360)
+var init_pos := Vector2(1800, 360)
 var slapped := false
 var move_back := false
 var finished := false

@@ -41,7 +41,7 @@ func _ready() -> void:
 	audio.pitch_scale = heart_beat_pitch_scale
 
 	# calculate key letter speed according to heart beat pitch scale
-	key_letter_speed = 1000
+	key_letter_speed = 850
 
 	# get random key combos
 	for i in range(KEY_COMBO_LENGTHS[phase]):
@@ -53,6 +53,9 @@ func _ready() -> void:
 	key_spawn_timer.wait_time = 0.4
 	key_spawn_timer.timeout.connect(on_key_spawn_timer_timeout)
 	add_child(key_spawn_timer)
+
+
+func start_key_spawn_timer() -> void:
 	key_spawn_timer.start()
 
 

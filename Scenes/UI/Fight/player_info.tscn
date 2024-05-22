@@ -8,13 +8,16 @@
 font = ExtResource("1_w3t78")
 font_size = 35
 
-[node name="PlayerInfo" type="ColorRect"]
+[node name="PlayerInfo" type="CanvasLayer"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(1280, 50)
+offset_right = 40.0
+offset_bottom = 40.0
 color = Color(0, 0, 0, 1)
 
 [node name="PlayerName" type="Label" parent="."]
 custom_minimum_size = Vector2(400, 50)
-layout_mode = 0
 offset_right = 420.0
 offset_bottom = 50.0
 text = "TACOCAT"

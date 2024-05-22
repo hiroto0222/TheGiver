@@ -4,7 +4,6 @@
 [ext_resource type="Script" path="res://Scenes/GameObject/FightApproach/key_enter_area.gd" id="1_q58hl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rvrli"]
-size = Vector2(30, 30)
 
 [sub_resource type="Animation" id="Animation_i4861"]
 length = 0.001
@@ -64,7 +63,7 @@ autoplay = "enter"
 
 [node name="SuccessParticles" type="CPUParticles2D" parent="."]
 emitting = false
-amount = 10
+amount = 12
 lifetime = 0.5
 one_shot = true
 speed_scale = 1.5

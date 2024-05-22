@@ -19,12 +19,12 @@
 [ext_resource type="AudioStream" uid="uid://dae2bett0t4s4" path="res://Assets/Sounds/Effects/FightApproach/key_success_13.wav" id="14_hux5h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6miah"]
-size = Vector2(45, 45)
+size = Vector2(15, 15)
 
 [node name="KeyInput" type="CharacterBody2D"]
 modulate = Color(1, 1, 1, 0.784314)
 position = Vector2(543, 640)
-scale = Vector2(1.75, 1.75)
+scale = Vector2(1.5, 1.5)
 script = ExtResource("1_jwosb")
 key_letter = "w"
 key_success_sounds = Array[AudioStreamWAV]([ExtResource("2_0iocj"), ExtResource("3_c3mu0"), ExtResource("4_ik3mr"), ExtResource("5_ol2ef"), ExtResource("6_62qhs"), ExtResource("7_8am1i"), ExtResource("8_2isa3"), ExtResource("9_643lr"), ExtResource("10_rk1lv"), ExtResource("11_smijo"), ExtResource("12_1cmsi"), ExtResource("13_xh1w8"), ExtResource("14_hux5h")])
@@ -47,5 +47,5 @@ stream = ExtResource("3_ouk3a")
 volume_db = -15.0
 
 [node name="DestroyTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.4
 one_shot = true

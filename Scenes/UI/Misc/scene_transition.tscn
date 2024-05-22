@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://be3hwqqpbwfb"]
+
+[ext_resource type="Shader" path="res://Scenes/UI/Misc/transition.gdshader" id="1_yoxxa"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gseye"]
+shader = ExtResource("1_yoxxa")
+shader_parameter/circle_size = 0.0
+shader_parameter/screen_width = 1280.0
+shader_parameter/screen_height = 720.0
+
+[sub_resource type="Animation" id="Animation_dsep2"]
+resource_name = "enter"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(4, 1),
+"update": 0,
+"values": [0.0, 1.05]
+}
+
+[sub_resource type="Animation" id="Animation_hxh5s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l21mr"]
+_data = {
+"RESET": SubResource("Animation_hxh5s"),
+"enter": SubResource("Animation_dsep2")
+}
+
+[node name="SceneTransition" type="CanvasLayer"]
+layer = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_gseye")
+custom_minimum_size = Vector2(1280, 720)
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_l21mr")
+}
+autoplay = "enter"
